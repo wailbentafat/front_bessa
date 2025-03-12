@@ -17,8 +17,8 @@ import { projects } from "@/data/projects"
 export default function Home() {
   return (
     <>
-      {/* Hero Section */}
-      <section className="relative h-[90vh] w-full overflow-hidden">
+      
+      <section className="relative h-[90vh]  w-full overflow-hidden">
         <ParallaxScroll speed={0.2}>
           <Image
             src="https://sjc.microlink.io/Np39p-7dlVvRx3akUxAb4yqZMEzHQkFc0OT79-CqJqNG-TV7dA1ixG8Z8i67sCoB2uOj_qxqIuyVjGDFuiuPbg.jpeg"
