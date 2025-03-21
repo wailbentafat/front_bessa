@@ -12,16 +12,16 @@ import { Badge } from "@/components/ui/badge"
 import { motion, AnimatePresence } from "framer-motion"
 
 export default function ProjectsPage() {
-  // Get unique locations for filter
+ 
   const locations = Array.from(new Set(projects.map((p) => p.location.split(",")[0].trim())))
 
-  // Get unique property types for filter
+ 
   const propertyTypes = Array.from(new Set(projects.map((p) => p.propertyType)))
 
-  // Get unique statuses for filter
+ 
   const statuses = Array.from(new Set(projects.map((p) => p.status)))
 
-  // State for filters
+
   const [selectedLocation, setSelectedLocation] = useState<string>("all")
   const [selectedPropertyType, setSelectedPropertyType] = useState<string>("all")
   const [selectedBedrooms, setSelectedBedrooms] = useState<string>("any")
@@ -34,7 +34,7 @@ export default function ProjectsPage() {
     security: false,
   })
 
-  // Filtered projects
+ 
   const [filteredProjects, setFilteredProjects] = useState(projects)
 
   // Apply filters
@@ -51,23 +51,23 @@ export default function ProjectsPage() {
       result = result.filter((p) => p.propertyType.toLowerCase() === selectedPropertyType.toLowerCase())
     }
 
-    // Filter by bedrooms
+  
     if (selectedBedrooms !== "any") {
       const minBedrooms = Number.parseInt(selectedBedrooms)
       result = result.filter((p) => p.bedrooms >= minBedrooms)
     }
 
-    // Filter by status
+  
     if (selectedStatus !== "all") {
       result = result.filter((p) => p.status === selectedStatus)
     }
 
-    // Filter by price
+   
     const minPrice = (priceRange[0] / 100) * 5000000
     const maxPrice = (priceRange[1] / 100) * 5000000
     result = result.filter((p) => p.price >= minPrice && p.price <= maxPrice)
 
-    // Filter by amenities
+    
     const selectedAmenities = Object.entries(amenities)
       .filter(([_, isSelected]) => isSelected)
       .map(([name]) => name)
@@ -94,7 +94,7 @@ export default function ProjectsPage() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <main className="flex-1">
+      <main className="flex-1 p-5">
         <section className="py-8">
           <div className="container">
             <h1 className="text-3xl font-bold mb-6">Our Properties</h1>
@@ -103,7 +103,7 @@ export default function ProjectsPage() {
               home.
             </p>
 
-            {/* Filters */}
+          
             <div className="bg-slate-50 p-6 rounded-lg mb-8">
               <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 <div>
@@ -257,14 +257,14 @@ export default function ProjectsPage() {
               ))}
             </div>
 
-            {/* Results count */}
+           
             <div className="mb-6">
               <p className="text-muted-foreground">
                 Showing <span className="font-medium text-foreground">{filteredProjects.length}</span> properties
               </p>
             </div>
 
-            {/* Projects grid */}
+          
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <AnimatePresence>
                 {filteredProjects.map((project) => (

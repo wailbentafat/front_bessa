@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { MapPin, Phone, Mail, Clock } from "lucide-react"
 import FadeIn from "@/components/animations/fade-in"
 import StaggerIn from "@/components/animations/stagger-in"
+import ContactForm from "@/components/contact/contactform"
 
 export default function ContactPage() {
   return (
@@ -42,7 +43,7 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <h3 className="font-medium">Visit Us</h3>
-                        <p className="text-sm text-muted-foreground">123 Luxury Avenue, Beirut, Lebanon</p>
+                        <p className="text-sm text-muted-foreground">alger algeria</p>
                       </div>
                     </div>
                     <div className="flex gap-4">
@@ -162,69 +163,7 @@ export default function ContactPage() {
               </FadeIn>
             </div>
 
-            <div className="lg:col-span-2">
-              <FadeIn delay={200}>
-                <Card>
-                  <CardContent className="p-6">
-                    <h2 className="text-2xl font-bold mb-6">Send Us a Message</h2>
-                    <form className="space-y-6">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="space-y-2">
-                          <label htmlFor="name" className="text-sm font-medium">
-                            Full Name
-                          </label>
-                          <Input id="name" placeholder="Enter your full name" />
-                        </div>
-                        <div className="space-y-2">
-                          <label htmlFor="email" className="text-sm font-medium">
-                            Email
-                          </label>
-                          <Input id="email" type="email" placeholder="Enter your email" />
-                        </div>
-                      </div>
-
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="space-y-2">
-                          <label htmlFor="phone" className="text-sm font-medium">
-                            Phone
-                          </label>
-                          <Input id="phone" placeholder="Enter your phone number" />
-                        </div>
-                        <div className="space-y-2">
-                          <label htmlFor="subject" className="text-sm font-medium">
-                            Subject
-                          </label>
-                          <Input id="subject" placeholder="Enter message subject" />
-                        </div>
-                      </div>
-
-                      <div className="space-y-2">
-                        <label htmlFor="message" className="text-sm font-medium">
-                          Message
-                        </label>
-                        <Textarea id="message" placeholder="Enter your message" className="min-h-32" />
-                      </div>
-
-                      <Button type="submit" className="w-full bg-red-600 hover:bg-red-700 text-white">
-                        Send Message
-                      </Button>
-                    </form>
-                  </CardContent>
-                </Card>
-
-                <div className="mt-8 h-80 w-full rounded-lg overflow-hidden">
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3196.2347936343663!2d2.974255975382949!3d36.76493446968753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x128fb03536394345%3A0xaf895312364887d0!2sSopimem%20Promotion!5e0!3m2!1sen!2sdz!4v1742569922101!5m2!1sen!2sdz"
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    title="Bessa Real Estate Location"
-                  ></iframe>
-                </div>
-              </FadeIn>
-            </div>
+          <ContactForm />
           </div>
         </div>
       </section>

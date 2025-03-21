@@ -45,7 +45,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Projects Section - Now before the carousel */}
+    
       <section id="projects" className="py-16 md:py-24">
         <div className="container">
           <FadeIn direction="up">
@@ -79,7 +79,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Design Showcase Section (Replacing Carousel) */}
+    
       <section className="w-full bg-slate-50 py-16 md:py-24">
         <div className="container">
           <FadeIn direction="up">
@@ -96,7 +96,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Why Choose Us Section */}
+      
       <section className="py-16 md:py-24">
         <div className="container">
           <FadeIn direction="up">

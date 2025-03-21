@@ -16,8 +16,8 @@ export default function SellYourLandPage() {
         <div className="absolute inset-0 flex items-center">
           <div className="container">
             <FadeIn direction="up">
-              <h1 className="text-4xl font-bold text-white mb-4">Sell Your Land to Bessa</h1>
-              <p className="text-xl text-white/90 max-w-2xl">
+              <h1 className="text-4xl font-bold text-white mb-4 p-5">Sell Your Land to Bessa</h1>
+              <p className="text-xl text-white/90 max-w-2xl p-5">
                 We're interested in acquiring prime land for our future developments. Submit your property details and
                 we'll get back to you with an offer.
               </p>
@@ -26,7 +26,7 @@ export default function SellYourLandPage() {
         </div>
       </section>
 
-      <section className="py-16">
+      <section className="py-16 p-5">
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             <div className="lg:col-span-1">
@@ -248,7 +248,7 @@ export default function SellYourLandPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-slate-50">
+      <section className="py-16 p-5 bg-slate-50">
         <div className="container">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Our Land Acquisition Process</h2>

@@ -15,7 +15,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
     notFound()
   }
 
-  // Find related projects (same area or property type)
+
   const relatedProjects = projects
     .filter(
       (p) =>
@@ -25,9 +25,9 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
     .slice(0, 3)
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col ">
       <main className="flex-1">
-        {/* Hero section */}
+       
         <section className="relative h-[50vh] md:h-[60vh] w-full overflow-hidden">
           <Image
             src={project.image || "/placeholder.svg?height=1080&width=1920"}
@@ -36,7 +36,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-black/30" />
+          <div className="absolute inset-0 bg-black/30 p-5" />
           <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
             <div className="container">
               <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
@@ -68,7 +68,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
         </section>
 
         {/* Content section */}
-        <section className="py-12">
+        <section className="py-12 p-5">
           <div className="container">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* Main content */}
@@ -262,8 +262,8 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
         {/* Related projects */}
         {relatedProjects.length > 0 && (
           <section className="py-12 bg-slate-50">
-            <div className="container">
-              <h2 className="text-2xl font-bold mb-8">Similar Properties</h2>
+            <div className="container p-5">
+              <h2 className="text-2xl font-bold mb-8 p-5 ">Similar Properties</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {relatedProjects.map((relatedProject) => (
                   <ProjectCard key={relatedProject.id} project={relatedProject} />
