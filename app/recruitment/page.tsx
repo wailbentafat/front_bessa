@@ -5,6 +5,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Label } from "@/components/ui/label"
 import FadeIn from "@/components/animations/fade-in"
 import StaggerIn from "@/components/animations/stagger-in"
+import RecruitementForm from "@/components/recruitement/RecruitementForm"
 
 export default function RecruitmentPage() {
   return (
@@ -14,8 +15,8 @@ export default function RecruitmentPage() {
         <div className="absolute inset-0 flex items-center">
           <div className="container">
             <FadeIn direction="up">
-              <h1 className="text-4xl font-bold text-white mb-4">Join Our Team</h1>
-              <p className="text-xl text-white/90 max-w-2xl">
+              <h1 className="text-4xl font-bold text-white mb-4 p-5">Join Our Team</h1>
+              <p className="text-xl text-white/90 max-w-2xl p-5">
                 Become part of Bessa Real Estate and help us shape the future of luxury living in Lebanon.
               </p>
             </FadeIn>
@@ -23,7 +24,7 @@ export default function RecruitmentPage() {
         </div>
       </section>
 
-      <section className="py-16">
+      <section className="py-16 p-5">
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             <div className="lg:col-span-1">
@@ -58,101 +59,7 @@ export default function RecruitmentPage() {
               <FadeIn delay={200}>
                 <div className="bg-white p-8 rounded-lg shadow-sm border">
                   <h2 className="text-2xl font-bold mb-6">Apply Now</h2>
-                  <form className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="space-y-2">
-                        <Label htmlFor="first-name">First Name</Label>
-                        <Input id="first-name" placeholder="Enter your first name" />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="last-name">Last Name</Label>
-                        <Input id="last-name" placeholder="Enter your last name" />
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="space-y-2">
-                        <Label htmlFor="email">Email</Label>
-                        <Input id="email" type="email" placeholder="Enter your email" />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="phone">Phone</Label>
-                        <Input id="phone" placeholder="Enter your phone number" />
-                      </div>
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="position">Position</Label>
-                      <Select>
-                        <SelectTrigger id="position">
-                          <SelectValue placeholder="Select a position" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="sales">Sales Agent</SelectItem>
-                          <SelectItem value="marketing">Marketing Specialist</SelectItem>
-                          <SelectItem value="architecture">Architect</SelectItem>
-                          <SelectItem value="interior">Interior Designer</SelectItem>
-                          <SelectItem value="customer-service">Customer Service</SelectItem>
-                          <SelectItem value="other">Other</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="experience">Years of Experience</Label>
-                      <Select>
-                        <SelectTrigger id="experience">
-                          <SelectValue placeholder="Select years of experience" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="0-1">0-1 years</SelectItem>
-                          <SelectItem value="1-3">1-3 years</SelectItem>
-                          <SelectItem value="3-5">3-5 years</SelectItem>
-                          <SelectItem value="5-10">5-10 years</SelectItem>
-                          <SelectItem value="10+">10+ years</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="message">Cover Letter</Label>
-                      <Textarea
-                        id="message"
-                        placeholder="Tell us about yourself and why you want to join Bessa"
-                        className="min-h-32"
-                      />
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="cv">Upload CV</Label>
-                      <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
-                        <input type="file" id="cv" className="hidden" accept=".pdf,.doc,.docx" />
-                        <label htmlFor="cv" className="cursor-pointer flex flex-col items-center justify-center gap-2">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            strokeWidth={1.5}
-                            stroke="currentColor"
-                            className="w-8 h-8 text-muted-foreground"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
-                            />
-                          </svg>
-                          <span className="text-sm text-muted-foreground">
-                            Click to upload your CV (PDF, DOC, DOCX)
-                          </span>
-                        </label>
-                      </div>
-                    </div>
-
-                    <Button type="submit" className="w-full bg-red-600 hover:bg-red-700 text-white">
-                      Submit Application
-                    </Button>
-                  </form>
+                 < RecruitementForm />
                 </div>
               </FadeIn>
             </div>

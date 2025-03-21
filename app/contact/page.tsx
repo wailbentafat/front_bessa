@@ -10,12 +10,12 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen">
       <section className="relative h-[40vh] w-full overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/40" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/40 " />
         <div className="absolute inset-0 flex items-center">
           <div className="container">
             <FadeIn direction="up">
-              <h1 className="text-4xl font-bold text-white mb-4">Contact Us</h1>
-              <p className="text-xl text-white/90 max-w-2xl">
+              <h1 className="text-4xl font-bold text-white mb-4 p-5">Contact Us</h1>
+              <p className="text-xl text-white/90 max-w-2xl p-5">
                 Get in touch with our team for any inquiries about our properties or services
               </p>
             </FadeIn>
@@ -25,7 +25,7 @@ export default function ContactPage() {
 
       <section className="py-16">
         <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 p-5">
             <div className="lg:col-span-1">
               <FadeIn>
                 <h2 className="text-2xl font-bold mb-6">Get In Touch</h2>
@@ -214,7 +214,7 @@ export default function ContactPage() {
 
                 <div className="mt-8 h-80 w-full rounded-lg overflow-hidden">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d106456.53429855506!2d35.44004509726562!3d33.88891299999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151f17215880a78f%3A0x729182bae99836b4!2sBeirut%2C%20Lebanon!5e0!3m2!1sen!2sus!4v1647882657513!5m2!1sen!2sus"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3196.2347936343663!2d2.974255975382949!3d36.76493446968753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x128fb03536394345%3A0xaf895312364887d0!2sSopimem%20Promotion!5e0!3m2!1sen!2sdz!4v1742569922101!5m2!1sen!2sdz"
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}

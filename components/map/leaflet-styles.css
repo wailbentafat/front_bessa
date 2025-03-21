@@ -1,0 +1,18 @@
+/* Add this to your globals.css or create a new CSS file and import it */
+
+.custom-marker {
+    background: transparent;
+    border: none;
+  }
+  
+  .leaflet-container {
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+  }
+  
+  .leaflet-control-container .leaflet-control {
+    z-index: 1000;
+  }
+  
+  

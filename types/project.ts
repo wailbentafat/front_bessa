@@ -29,8 +29,8 @@ export interface ProjectType {
   nearbyAmenities: string[]
   floorPlans?: FloorPlan[]
   mapPosition: {
-    x: number
-    y: number
+    lat: number
+    lng: number
   }
   agent: {
     name: string

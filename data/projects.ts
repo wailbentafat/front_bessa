@@ -4,21 +4,17 @@ export const projects: ProjectType[] = [
   {
     id: "grand-residence",
     name: "The Grand Residence",
-    location: "Beirut, Lebanon",
+    location: "Algiers, Algeria",
     description: "Luxury apartments with panoramic sea views and premium amenities.",
     fullDescription:
-      "The Grand Residence offers an unparalleled luxury living experience in the heart of Beirut. Featuring spacious, elegantly designed apartments with floor-to-ceiling windows that frame breathtaking views of the Mediterranean Sea. Each residence is meticulously crafted with premium materials and finishes, creating a sophisticated and comfortable living environment.",
+      "The Grand Residence offers an unparalleled luxury living experience in the heart of Algiers. Featuring spacious, elegantly designed apartments with floor-to-ceiling windows that frame breathtaking views of the Mediterranean Sea. Each residence is meticulously crafted with premium materials and finishes, creating a sophisticated and comfortable living environment.",
     aboutText:
-      "Developed by Bessa Real Estate, The Grand Residence represents the pinnacle of urban luxury living. The building's striking architecture makes it a landmark in Beirut's skyline, while its prime location provides residents with easy access to the city's finest dining, shopping, and cultural attractions.",
+      "Developed by Bessa Real Estate, The Grand Residence represents the pinnacle of urban luxury living. The building's striking architecture makes it a landmark in Algiers' skyline, while its prime location provides residents with easy access to the city's finest dining, shopping, and cultural attractions.",
     image:
       "https://sjc.microlink.io/Np39p-7dlVvRx3akUxAb4yqZMEzHQkFc0OT79-CqJqNG-TV7dA1ixG8Z8i67sCoB2uOj_qxqIuyVjGDFuiuPbg.jpeg",
     gallery: [
       "https://sjc.microlink.io/Np39p-7dlVvRx3akUxAb4yqZMEzHQkFc0OT79-CqJqNG-TV7dA1ixG8Z8i67sCoB2uOj_qxqIuyVjGDFuiuPbg.jpeg",
-      "https://sjc.microlink.io/jvJHQBuNEqKEmIXuzK-XHAPPaA1KzMRN_IUUM7mM64ywoGvcGu3eqZTIz1JdDyqigwlVdBJbPKcbNkbjLZD9fA.jpeg",
-      "https://sjc.microlink.io/Np39p-7dlVvRx3akUxAb4yqZMEzHQkFc0OT79-CqJqNG-TV7dA1ixG8Z8i67sCoB2uOj_qxqIuyVjGDFuiuPbg.jpeg",
-      "https://sjc.microlink.io/jvJHQBuNEqKEmIXuzK-XHAPPaA1KzMRN_IUUM7mM64ywoGvcGu3eqZTIz1JdDyqigwlVdBJbPKcbNkbjLZD9fA.jpeg",
-      "https://sjc.microlink.io/Np39p-7dlVvRx3akUxAb4yqZMEzHQkFc0OT79-CqJqNG-TV7dA1ixG8Z8i67sCoB2uOj_qxqIuyVjGDFuiuPbg.jpeg",
-      "https://sjc.microlink.io/jvJHQBuNEqKEmIXuzK-XHAPPaA1KzMRN_IUUM7mM64ywoGvcGu3eqZTIz1JdDyqigwlVdBJbPKcbNkbjLZD9fA.jpeg",
+      "https://sjc.microlink.io/jvJHQBuNEqKEmIXuzK-XHAPPaA1KzMRN_IUUM7mM64ywoGvcGu3eqZTIz1JdDyqigwlVdBJbPKcbNkbjLZD9fA.jpeg"
     ],
     price: 1250000,
     propertyType: "Apartment",
@@ -31,29 +27,17 @@ export const projects: ProjectType[] = [
       "Floor-to-ceiling windows",
       "Private balcony",
       "Italian marble flooring",
-      "Smart home technology",
-      "Custom kitchen cabinetry",
-      "High-end appliances",
-      "Walk-in closets",
-      "Soundproof walls",
+      "Smart home technology"
     ],
     amenities: [
       "24/7 concierge service",
       "Rooftop infinity pool",
-      "Fully equipped fitness center",
-      "Spa and wellness center",
-      "Underground parking",
-      "Private cinema",
-      "Business center",
-      "Children's playground",
+      "Fully equipped fitness center"
     ],
     nearbyAmenities: [
       "5 minutes to premium shopping centers",
       "10 minutes to international schools",
-      "15 minutes to Beirut Central District",
-      "20 minutes to Beirut International Airport",
-      "Walking distance to restaurants and cafes",
-      "Close to medical facilities",
+      "15 minutes to Algiers Central District"
     ],
     floorPlans: [
       {
@@ -63,48 +47,35 @@ export const projects: ProjectType[] = [
         size: "120 sqm",
         bedrooms: 2,
         bathrooms: 2,
-        description: "Spacious 2-bedroom apartment with open living area and private balcony.",
-      },
-      {
-        id: "floor-2",
-        name: "Type B - 3 Bedroom",
-        image: "/placeholder.svg?height=800&width=1200",
-        size: "185 sqm",
-        bedrooms: 3,
-        bathrooms: 2,
-        description: "Family-friendly 3-bedroom apartment with master suite and large terrace.",
-      },
+        description: "Spacious 2-bedroom apartment with open living area and private balcony."
+      }
     ],
     mapPosition: {
-      x: 35,
-      y: 45,
+      lat: 36.7538,
+      lng: 3.058756
     },
     agent: {
       name: "Sarah Khoury",
       title: "Senior Sales Consultant",
-      phone: "+961 3 123 456",
+      phone: "+213 3 123 456",
       email: "sarah.k@bessarealestate.com",
-      image: "/placeholder.svg?height=100&width=100",
-    },
+      image: "/placeholder.svg?height=100&width=100"
+    }
   },
   {
     id: "azure-heights",
     name: "Azure Heights",
-    location: "Jounieh, Lebanon",
+    location: "Oran, Algeria",
     description: "Modern living spaces with smart home technology and private terraces.",
     fullDescription:
-      "Azure Heights is a premium residential development offering contemporary living spaces with stunning views of Jounieh Bay. These modern apartments combine elegant design with cutting-edge technology to create homes that are both beautiful and functional. Each unit features private terraces where residents can enjoy the spectacular Mediterranean sunsets.",
+      "Azure Heights is a premium residential development offering contemporary living spaces with stunning views of Oran Bay. These modern apartments combine elegant design with cutting-edge technology to create homes that are both beautiful and functional. Each unit features private terraces where residents can enjoy the spectacular Mediterranean sunsets.",
     aboutText:
-      "Azure Heights represents the future of residential living in Lebanon. With its focus on sustainability and smart technology, this development sets a new standard for modern homes. The building's sleek design and thoughtful amenities create a living experience that is both luxurious and environmentally conscious.",
+      "Azure Heights represents the future of residential living in Algeria. With its focus on sustainability and smart technology, this development sets a new standard for modern homes.",
     image:
       "https://sjc.microlink.io/jvJHQBuNEqKEmIXuzK-XHAPPaA1KzMRN_IUUM7mM64ywoGvcGu3eqZTIz1JdDyqigwlVdBJbPKcbNkbjLZD9fA.jpeg",
     gallery: [
       "https://sjc.microlink.io/jvJHQBuNEqKEmIXuzK-XHAPPaA1KzMRN_IUUM7mM64ywoGvcGu3eqZTIz1JdDyqigwlVdBJbPKcbNkbjLZD9fA.jpeg",
-      "https://sjc.microlink.io/Np39p-7dlVvRx3akUxAb4yqZMEzHQkFc0OT79-CqJqNG-TV7dA1ixG8Z8i67sCoB2uOj_qxqIuyVjGDFuiuPbg.jpeg",
-      "https://sjc.microlink.io/jvJHQBuNEqKEmIXuzK-XHAPPaA1KzMRN_IUUM7mM64ywoGvcGu3eqZTIz1JdDyqigwlVdBJbPKcbNkbjLZD9fA.jpeg",
-      "https://sjc.microlink.io/Np39p-7dlVvRx3akUxAb4yqZMEzHQkFc0OT79-CqJqNG-TV7dA1ixG8Z8i67sCoB2uOj_qxqIuyVjGDFuiuPbg.jpeg",
-      "https://sjc.microlink.io/jvJHQBuNEqKEmIXuzK-XHAPPaA1KzMRN_IUUM7mM64ywoGvcGu3eqZTIz1JdDyqigwlVdBJbPKcbNkbjLZD9fA.jpeg",
-      "https://sjc.microlink.io/Np39p-7dlVvRx3akUxAb4yqZMEzHQkFc0OT79-CqJqNG-TV7dA1ixG8Z8i67sCoB2uOj_qxqIuyVjGDFuiuPbg.jpeg",
+      "https://sjc.microlink.io/Np39p-7dlVvRx3akUxAb4yqZMEzHQkFc0OT79-CqJqNG-TV7dA1ixG8Z8i67sCoB2uOj_qxqIuyVjGDFuiuPbg.jpeg"
     ],
     price: 950000,
     propertyType: "Apartment",
@@ -113,151 +84,21 @@ export const projects: ProjectType[] = [
     bathrooms: 2,
     status: "Under Construction",
     tags: ["Bay View", "Smart Home", "Eco-Friendly"],
-    features: [
-      "Smart home automation system",
-      "Energy-efficient appliances",
-      "Private terrace",
-      "Double-glazed windows",
-      "Engineered hardwood flooring",
-      "Recessed LED lighting",
-      "Custom built-in storage",
-      "Fiber optic internet connectivity",
-    ],
-    amenities: [
-      "Infinity edge swimming pool",
-      "Landscaped gardens",
-      "Co-working space",
-      "Electric vehicle charging stations",
-      "Yoga and meditation room",
-      "Residents' lounge",
-      "Secure access control",
-      "Bicycle storage",
-    ],
+    features: ["Smart home automation system", "Energy-efficient appliances"],
+    amenities: ["Infinity edge swimming pool", "Landscaped gardens"],
     nearbyAmenities: [
-      "5 minutes to Jounieh waterfront",
-      "10 minutes to Casino du Liban",
-      "15 minutes to major shopping centers",
-      "20 minutes to international schools",
-      "30 minutes to Beirut",
-      "Easy access to highway",
-    ],
-    floorPlans: [
-      {
-        id: "floor-1",
-        name: "Type A - 1 Bedroom",
-        image: "/placeholder.svg?height=800&width=1200",
-        size: "90 sqm",
-        bedrooms: 1,
-        bathrooms: 1,
-        description: "Modern 1-bedroom apartment with smart home features and sea view.",
-      },
-      {
-        id: "floor-2",
-        name: "Type B - 2 Bedroom",
-        image: "/placeholder.svg?height=800&width=1200",
-        size: "160 sqm",
-        bedrooms: 2,
-        bathrooms: 2,
-        description: "Spacious 2-bedroom apartment with private terrace and panoramic views.",
-      },
+      "5 minutes to Oran waterfront",
+      "10 minutes to major shopping centers"
     ],
     mapPosition: {
-      x: 65,
-      y: 30,
+      lat: 35.697654,
+      lng: -0.634313
     },
     agent: {
       name: "Michel Haddad",
       title: "Property Consultant",
-      phone: "+961 3 789 012",
-      email: "michel.h@bessarealestate.com",
-      image: "/placeholder.svg?height=100&width=100",
-    },
-  },
-  {
-    id: "emerald-valley",
-    name: "Emerald Valley",
-    location: "Mount Lebanon",
-    description: "Exclusive villas surrounded by nature with breathtaking mountain views.",
-    fullDescription:
-      "Emerald Valley is an exclusive collection of luxury villas nestled in the serene mountains of Lebanon. Each residence is designed to harmonize with the natural surroundings while providing the utmost in comfort and sophistication. The spacious villas feature private gardens, infinity pools, and panoramic views of the lush valleys below.",
-    aboutText:
-      "Emerald Valley offers a rare opportunity to own a private sanctuary in one of Lebanon's most beautiful natural settings. These villas are thoughtfully positioned to maximize privacy and views, creating a peaceful retreat from the bustle of city life. Despite the secluded setting, residents enjoy easy access to nearby towns and amenities.",
-    image:
-      "https://sjc.microlink.io/Np39p-7dlVvRx3akUxAb4yqZMEzHQkFc0OT79-CqJqNG-TV7dA1ixG8Z8i67sCoB2uOj_qxqIuyVjGDFuiuPbg.jpeg",
-    gallery: [
-      "https://sjc.microlink.io/Np39p-7dlVvRx3akUxAb4yqZMEzHQkFc0OT79-CqJqNG-TV7dA1ixG8Z8i67sCoB2uOj_qxqIuyVjGDFuiuPbg.jpeg",
-      "https://sjc.microlink.io/jvJHQBuNEqKEmIXuzK-XHAPPaA1KzMRN_IUUM7mM64ywoGvcGu3eqZTIz1JdDyqigwlVdBJbPKcbNkbjLZD9fA.jpeg",
-      "https://sjc.microlink.io/Np39p-7dlVvRx3akUxAb4yqZMEzHQkFc0OT79-CqJqNG-TV7dA1ixG8Z8i67sCoB2uOj_qxqIuyVjGDFuiuPbg.jpeg",
-      "https://sjc.microlink.io/jvJHQBuNEqKEmIXuzK-XHAPPaA1KzMRN_IUUM7mM64ywoGvcGu3eqZTIz1JdDyqigwlVdBJbPKcbNkbjLZD9fA.jpeg",
-      "https://sjc.microlink.io/Np39p-7dlVvRx3akUxAb4yqZMEzHQkFc0OT79-CqJqNG-TV7dA1ixG8Z8i67sCoB2uOj_qxqIuyVjGDFuiuPbg.jpeg",
-      "https://sjc.microlink.io/jvJHQBuNEqKEmIXuzK-XHAPPaA1KzMRN_IUUM7mM64ywoGvcGu3eqZTIz1JdDyqigwlVdBJbPKcbNkbjLZD9fA.jpeg",
-    ],
-    price: 2800000,
-    propertyType: "Villa",
-    size: 450,
-    bedrooms: 5,
-    bathrooms: 4,
-    status: "Ready to Move",
-    tags: ["Mountain View", "Private Pool", "Gated Community"],
-    features: [
-      "Private infinity pool",
-      "Landscaped garden",
-      "Outdoor kitchen and dining area",
-      "Floor heating system",
-      "Stone and wood finishes",
-      "Fireplace",
-      "Wine cellar",
-      "Home theater",
-    ],
-    amenities: [
-      "Gated community with 24/7 security",
-      "Clubhouse",
-      "Tennis courts",
-      "Hiking trails",
-      "Helipad",
-      "Community organic garden",
-      "Children's playground",
-      "Guest houses",
-    ],
-    nearbyAmenities: [
-      "15 minutes to premium restaurants",
-      "20 minutes to international schools",
-      "25 minutes to shopping centers",
-      "30 minutes to ski resorts",
-      "45 minutes to Beirut",
-      "Close to natural reserves",
-    ],
-    floorPlans: [
-      {
-        id: "floor-1",
-        name: "Ground Floor",
-        image: "/placeholder.svg?height=800&width=1200",
-        size: "250 sqm",
-        bedrooms: 2,
-        bathrooms: 2,
-        description: "Main living areas with open kitchen, dining, living room, and guest bedrooms.",
-      },
-      {
-        id: "floor-2",
-        name: "First Floor",
-        image: "/placeholder.svg?height=800&width=1200",
-        size: "200 sqm",
-        bedrooms: 3,
-        bathrooms: 2,
-        description: "Master suite and additional bedrooms with private balconies and mountain views.",
-      },
-    ],
-    mapPosition: {
-      x: 45,
-      y: 20,
-    },
-    agent: {
-      name: "Rami Abboud",
-      title: "Luxury Property Specialist",
-      phone: "+961 3 456 789",
-      email: "rami.a@bessarealestate.com",
-      image: "/placeholder.svg?height=100&width=100",
-    },
-  },
+      phone: "+213 3 789 012",
+      email: "michel.h@bessarealestate.com"
+    }
+  }
 ]
-

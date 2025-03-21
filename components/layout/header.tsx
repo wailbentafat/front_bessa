@@ -5,10 +5,11 @@ import type React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useState, useEffect } from "react"
-import { ChevronDown, Globe, Menu, Moon, Sun, X } from "lucide-react"
+import { ChevronDown, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { cn } from "@/lib/utils"
+import Image from "next/image"
 
 export default function Header() {
   const pathname = usePathname()
@@ -32,19 +33,22 @@ export default function Header() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full px-2 py-3 transition-all duration-300",
+        "sticky top-0 z-50 w-full transition-all duration-300 h-[80px]",
         isScrolled
           ? "border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm"
           : "bg-transparent",
       )}
     >
       <div className="container flex h-16 items-center justify-between">
-        <div className="flex items-center gap-2">
+        {/* <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center gap-2 transition-transform hover:scale-105">
             <div className="bg-red-600 p-2 rounded">
               <span className="font-bold text-white">BESSA</span>
             </div>
           </Link>
+        </div> */}
+        <div className=" ml-5">
+          <Image src={"/logo.webp"} alt="Logo" width={150} height={150} />
         </div>
 
         <nav className="hidden md:flex items-center gap-6">
@@ -108,18 +112,6 @@ export default function Header() {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-
-          <div className="flex items-center gap-2">
-            <Button variant="ghost" size="icon" className="rounded-full">
-              <Globe className="h-4 w-4" />
-              <span className="sr-only">Language</span>
-            </Button>
-            <Button variant="ghost" size="icon" className="rounded-full">
-              <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-              <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-              <span className="sr-only">Toggle theme</span>
-            </Button>
-          </div>
         </nav>
 
         <Button
@@ -133,15 +125,14 @@ export default function Header() {
         </Button>
       </div>
 
-      {/* Mobile menu */}
       <div
         className={cn(
-          "fixed inset-x-0 top-16 z-50 border-b border-t bg-background md:hidden transition-all duration-300 ease-in-out",
-          isMobileMenuOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0",
+          "fixed inset-x-0 top-[80px] z-50 border-b border-t bg-background md:hidden transition-all duration-300 ease-in-out max-h-[calc(100vh-80px)] overflow-y-auto",
+          isMobileMenuOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none",
         )}
       >
         <div className="container py-4">
-          <nav className="flex flex-col gap-4">
+          <nav className="flex flex-col gap-4 pb-6">
             <Link
               href="/"
               className={cn(
