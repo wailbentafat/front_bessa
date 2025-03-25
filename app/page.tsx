@@ -9,43 +9,28 @@ import { Textarea } from "@/components/ui/textarea"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import FadeIn from "@/components/animations/fade-in"
 import StaggerIn from "@/components/animations/stagger-in"
-import ParallaxScroll from "@/components/animations/parallax-scroll"
 import ProjectCard from "@/components/project-card"
-import DesignShowcase from "@/components/design-showcase"
 import { projects } from "@/data/projects"
-
+import DesignExcellenceSection from "@/components/home/design-excellence-section"
+import HeroParallaxSection from "@/components/home/hero-parallax"
+import Testimonial from "@/components/home/testimonial"
+import Mobileapp from "@/components/home/mobileapp"
+//TODO:nzido fiha carousel chaabba
+/**
+ * The homepage of the application.
+ *
+ * This page displays a hero section with a background image, a section for
+ * featured projects, a section for testimonials, and a contact section.
+ *
+ * @returns The JSX element for the homepage.
+ */
 export default function Home() {
   return (
     <>
       
-      <section className="relative h-[90vh]  w-full overflow-hidden">
-        <ParallaxScroll speed={0.2}>
-          <Image
-            src="https://sjc.microlink.io/Np39p-7dlVvRx3akUxAb4yqZMEzHQkFc0OT79-CqJqNG-TV7dA1ixG8Z8i67sCoB2uOj_qxqIuyVjGDFuiuPbg.jpeg"
-            alt="Luxury Property"
-            fill
-            className="object-cover"
-            priority
-          />
-        </ParallaxScroll>
-        <div className="absolute inset-0 bg-black/40" />
-        <div className="container relative z-10 flex h-full flex-col items-center justify-center text-center text-white">
-          <FadeIn direction="up" delay={300}>
-            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">Experience Luxury Living</h1>
-          </FadeIn>
-          <FadeIn direction="up" delay={500}>
-            <p className="mt-4 max-w-3xl text-xl text-white/90">Exclusive Residences Tailored for You</p>
-          </FadeIn>
-          <FadeIn direction="up" delay={700}>
-            <Button className="mt-8 bg-red-600 hover:bg-red-700 text-white transition-transform hover:scale-105">
-              Discover Our Projects
-              <ChevronRight className="ml-2 h-4 w-4" />
-            </Button>
-          </FadeIn>
-        </div>
-      </section>
+      <HeroParallaxSection />
 
-    
+      
       <section id="projects" className="py-16 md:py-24">
         <div className="container">
           <FadeIn direction="up">
@@ -77,27 +62,15 @@ export default function Home() {
             </div>
           </FadeIn>
         </div>
-      </section>
-
-    
-      <section className="w-full bg-slate-50 py-16 md:py-24">
-        <div className="container">
-          <FadeIn direction="up">
-            <div className="flex flex-col items-center text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Our Design Excellence</h2>
-              <p className="mt-4 max-w-3xl text-muted-foreground">
-                Explore the exceptional design elements that define our luxury properties
-              </p>
-            </div>
-          </FadeIn>
-          <FadeIn>
-            <DesignShowcase />
-          </FadeIn>
-        </div>
-      </section>
-
+       </section>
       
-      <section className="py-16 md:py-24">
+
+      {/* <DesignExcellenceSection /> */}
+
+      <section className="py-16 md:py-24"> 
+     
+
+     
         <div className="container">
           <FadeIn direction="up">
             <div className="flex flex-col items-center text-center mb-12">
@@ -126,103 +99,11 @@ export default function Home() {
           </StaggerIn>
         </div>
       </section>
+    
 
       {/* Mobile App Section */}
-      <section id="app" className="bg-slate-50 py-16 md:py-24">
-        <div className="container">
-          <div className="grid grid-cols-1 gap-12 md:grid-cols-2 items-center">
-            <FadeIn direction="right" delay={200}>
-              <div className="flex justify-center">
-                <div className="relative h-[500px] w-[250px] transition-transform hover:scale-105 duration-700">
-                  <Image
-                    src="https://sjc.microlink.io/jvJHQBuNEqKEmIXuzK-XHAPPaA1KzMRN_IUUM7mM64ywoGvcGu3eqZTIz1JdDyqigwlVdBJbPKcbNkbjLZD9fA.jpeg"
-                    alt="Bessa Mobile App"
-                    fill
-                    className="object-cover rounded-3xl shadow-xl"
-                  />
-                </div>
-              </div>
-            </FadeIn>
-
-            <FadeIn direction="left" delay={400}>
-              <div>
-                <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-6">Buy Bessa App</h2>
-                <p className="text-muted-foreground mb-8">
-                  Experience the convenience of browsing our properties, receiving real-time updates, and connecting
-                  with our team directly from your smartphone.
-                </p>
-                <ul className="space-y-4 mb-8">
-                  {appFeatures.map((feature, index) => (
-                    <li key={index} className="flex items-start group">
-                      <div className="mr-4 mt-1 flex h-6 w-6 items-center justify-center rounded-full bg-red-100 text-red-600 group-hover:bg-red-600 group-hover:text-white transition-colors duration-300">
-                        <ChevronRight className="h-4 w-4" />
-                      </div>
-                      <p>{feature}</p>
-                    </li>
-                  ))}
-                </ul>
-                <div className="flex flex-wrap gap-4">
-                  <Button className="bg-black hover:bg-gray-800 text-white transition-transform hover:scale-105">
-                    <Download className="mr-2 h-4 w-4" />
-                    App Store
-                  </Button>
-                  <Button className="bg-black hover:bg-gray-800 text-white transition-transform hover:scale-105">
-                    <Download className="mr-2 h-4 w-4" />
-                    Google Play
-                  </Button>
-                </div>
-              </div>
-            </FadeIn>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section className="py-16 md:py-24">
-        <div className="container">
-          <FadeIn direction="up">
-            <div className="flex flex-col items-center text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">What Our Clients Say</h2>
-              <p className="mt-4 max-w-3xl text-muted-foreground">
-                Hear from our satisfied homeowners about their experience with Bessa
-              </p>
-            </div>
-          </FadeIn>
-
-          <FadeIn direction="up" delay={300}>
-            <Tabs defaultValue="testimonial1" className="w-full max-w-4xl mx-auto">
-              <TabsList className="grid w-full grid-cols-3">
-                <TabsTrigger value="testimonial1">Sarah M.</TabsTrigger>
-                <TabsTrigger value="testimonial2">David L.</TabsTrigger>
-                <TabsTrigger value="testimonial3">Amira K.</TabsTrigger>
-              </TabsList>
-              {testimonials.map((testimonial, index) => (
-                <TabsContent key={index} value={`testimonial${index + 1}`} className="mt-6">
-                  <Card className="overflow-hidden transition-all hover:shadow-lg">
-                    <CardHeader className="flex flex-row items-center gap-4">
-                      <div className="relative h-12 w-12 rounded-full overflow-hidden">
-                        <Image
-                          src={testimonial.avatar || "/placeholder.svg"}
-                          alt={testimonial.name}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                      <div>
-                        <CardTitle>{testimonial.name}</CardTitle>
-                        <p className="text-sm text-muted-foreground">{testimonial.property}</p>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-muted-foreground italic">{testimonial.quote}</p>
-                    </CardContent>
-                  </Card>
-                </TabsContent>
-              ))}
-            </Tabs>
-          </FadeIn>
-        </div>
-      </section>
+     <Mobileapp/>
+      <Testimonial />
 
       {/* Contact Section */}
       <section id="contact" className="bg-slate-50 py-16 md:py-24">
@@ -383,37 +264,5 @@ const stats = [
   { value: "6,000+", label: "Apartments Delivered" },
   { value: "30+", label: "Luxury Residences" },
   { value: "24/7", label: "Customer Support" },
-]
-
-const appFeatures = [
-  "Browse exclusive properties in real-time",
-  "Receive instant notifications on new listings",
-  "Virtual tours of properties from your device",
-  "Direct messaging with our sales team",
-  "Secure document submission and verification",
-]
-
-const testimonials = [
-  {
-    name: "Sarah M.",
-    property: "The Grand Residence",
-    avatar: "/placeholder.svg?height=100&width=100",
-    quote:
-      "Buying our dream home with Bessa was an exceptional experience. The team was professional, attentive, and made the entire process seamless.",
-  },
-  {
-    name: "David L.",
-    property: "Azure Heights",
-    avatar: "/placeholder.svg?height=100&width=100",
-    quote:
-      "The quality of construction and attention to detail in our apartment exceeded our expectations. Bessa delivers on their promise of luxury living.",
-  },
-  {
-    name: "Amira K.",
-    property: "Emerald Valley",
-    avatar: "/placeholder.svg?height=100&width=100",
-    quote:
-      "From the initial consultation to receiving our keys, Bessa provided outstanding service. Our villa is everything we dreamed of and more.",
-  },
 ]
 

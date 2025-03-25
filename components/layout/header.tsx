@@ -53,62 +53,62 @@ export default function Header() {
 
         <nav className="hidden md:flex items-center gap-6">
           <NavLink href="/" isActive={pathname === "/"}>
-            Home
+            <span className="font-bold">Home</span>
           </NavLink>
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
                 variant="ghost"
-                className="flex items-center gap-1 text-sm font-medium transition-colors hover:text-red-600"
+                className="flex items-center gap-1 text-sm font-bold transition-colors hover:text-red-600"
               >
                 Projects <ChevronDown className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-40">
               <DropdownMenuItem asChild>
-                <Link href="/projects">All Projects</Link>
+                <Link href="/projects" className="font-bold">All Projects</Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link href="/projects?status=Ready to Move">Ready Properties</Link>
+                <Link href="/projects?status=Ready to Move" className="font-bold">Ready Properties</Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link href="/projects?status=Under Construction">Under Construction</Link>
+                <Link href="/projects?status=Under Construction" className="font-bold">Under Construction</Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link href="/projects?status=Coming Soon">Coming Soon</Link>
+                <Link href="/projects?status=Coming Soon" className="font-bold">Coming Soon</Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
 
           <NavLink href="/map" isActive={pathname === "/map"}>
-            Map
+          <span className="font-bold">Map</span>
           </NavLink>
           <NavLink href="/recruitment" isActive={pathname === "/recruitment"}>
-            Careers
+            <span className="font-bold">Careers</span>
           </NavLink>
-          <NavLink href="/sell-your-land" isActive={pathname === "/sell-your-land"}>
-            Sell Your Land
+          <NavLink href="/sell-your-land" isActive={pathname === "/sell-your-land"} >
+            <span className="font-bold">Sell Your Land</span>
           </NavLink>
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
                 variant="ghost"
-                className="flex items-center gap-1 text-sm font-medium transition-colors hover:text-red-600"
+                className="flex  items-center gap-1 text-sm font-bold transition-colors hover:text-red-600"
               >
                 More <ChevronDown className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-40">
               <DropdownMenuItem asChild>
-                <Link href="/about">About Us</Link>
+                <Link href="/about" className="font-bold">About Us</Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link href="/contact">Contact</Link>
+                <Link href="/contact" className="font-bold">Contact</Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link href="/#app">Buy Bessa App</Link>
+                <Link href="/#app" className="font-bold">Buy Bessa App</Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -121,7 +121,7 @@ export default function Header() {
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          <span className="sr-only">Toggle menu</span>
+          <span className="sr-only font-bold">Toggle menu</span>
         </Button>
       </div>
 
@@ -136,18 +136,18 @@ export default function Header() {
             <Link
               href="/"
               className={cn(
-                "text-sm font-medium transition-colors hover:text-red-600 p-2 rounded-md",
+                "text-sm font-bold transition-colors hover:text-red-600 p-2 rounded-md",
                 pathname === "/" && "bg-red-50 text-red-600",
               )}
             >
               Home
             </Link>
             <div className="border-t my-1"></div>
-            <div className="pl-2 text-sm font-medium text-muted-foreground">Projects</div>
+            <div className="pl-2 text-sm font-bold text-muted-foreground">Projects</div>
             <Link
               href="/projects"
               className={cn(
-                "text-sm font-medium transition-colors hover:text-red-600 p-2 rounded-md pl-4",
+                "text-sm font-bold transition-colors hover:text-red-600 p-2 rounded-md pl-4",
                 pathname === "/projects" && "bg-red-50 text-red-600",
               )}
             >
@@ -155,19 +155,19 @@ export default function Header() {
             </Link>
             <Link
               href="/projects?status=Ready to Move"
-              className="text-sm font-medium transition-colors hover:text-red-600 p-2 rounded-md pl-4"
+              className="text-sm font-bold transition-colors hover:text-red-600 p-2 rounded-md pl-4"
             >
               Ready Properties
             </Link>
             <Link
               href="/projects?status=Under Construction"
-              className="text-sm font-medium transition-colors hover:text-red-600 p-2 rounded-md pl-4"
+              className="text-sm font-bold transition-colors hover:text-red-600 p-2 rounded-md pl-4"
             >
               Under Construction
             </Link>
             <Link
               href="/projects?status=Coming Soon"
-              className="text-sm font-medium transition-colors hover:text-red-600 p-2 rounded-md pl-4"
+              className="text-sm font-bold transition-colors hover:text-red-600 p-2 rounded-md pl-4"
             >
               Coming Soon
             </Link>
@@ -175,7 +175,7 @@ export default function Header() {
             <Link
               href="/map"
               className={cn(
-                "text-sm font-medium transition-colors hover:text-red-600 p-2 rounded-md",
+                "text-sm font-bold transition-colors hover:text-red-600 p-2 rounded-md",
                 pathname === "/map" && "bg-red-50 text-red-600",
               )}
             >
@@ -184,7 +184,7 @@ export default function Header() {
             <Link
               href="/recruitment"
               className={cn(
-                "text-sm font-medium transition-colors hover:text-red-600 p-2 rounded-md",
+                "text-sm font-bold transition-colors hover:text-red-600 p-2 rounded-md",
                 pathname === "/recruitment" && "bg-red-50 text-red-600",
               )}
             >
@@ -193,7 +193,7 @@ export default function Header() {
             <Link
               href="/sell-your-land"
               className={cn(
-                "text-sm font-medium transition-colors hover:text-red-600 p-2 rounded-md",
+                "text-sm font-bold transition-colors hover:text-red-600 p-2 rounded-md",
                 pathname === "/sell-your-land" && "bg-red-50 text-red-600",
               )}
             >
@@ -202,7 +202,7 @@ export default function Header() {
             <Link
               href="/about"
               className={cn(
-                "text-sm font-medium transition-colors hover:text-red-600 p-2 rounded-md",
+                "text-sm font-bold transition-colors hover:text-red-600 p-2 rounded-md",
                 pathname === "/about" && "bg-red-50 text-red-600",
               )}
             >
@@ -211,13 +211,13 @@ export default function Header() {
             <Link
               href="/contact"
               className={cn(
-                "text-sm font-medium transition-colors hover:text-red-600 p-2 rounded-md",
+                "text-sm font-bold transition-colors hover:text-red-600 p-2 rounded-md",
                 pathname === "/contact" && "bg-red-50 text-red-600",
               )}
             >
               Contact
             </Link>
-            <Link href="/#app" className="text-sm font-medium transition-colors hover:text-red-600 p-2 rounded-md">
+            <Link href="/#app" className="text-sm font-bold transition-colors hover:text-red-600 p-2 rounded-md">
               Buy Bessa App
             </Link>
           </nav>

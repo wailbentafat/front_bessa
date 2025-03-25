@@ -72,10 +72,10 @@ export default function ProjectCard({ project, variant = "default" }: ProjectCar
         />
         {project.status && (
           <div className="absolute top-2 left-2">
-            <Badge variant="red">{project.status}</Badge>
+            <Badge variant="destructive">{project.status}</Badge>
           </div>
         )}
-        <button
+        {/* <button
           className={`absolute top-2 right-2 p-2 rounded-full transition-all duration-300 ${
             isFavorite ? "bg-red-600 text-white" : "bg-white/80 text-gray-600 hover:bg-white hover:text-red-600"
           }`}
@@ -85,9 +85,9 @@ export default function ProjectCard({ project, variant = "default" }: ProjectCar
           }}
         >
           <Heart className={`h-5 w-5 ${isFavorite ? "fill-white" : ""}`} />
-        </button>
+        </button> */}
 
-        {/* Overlay on hover */}
+      
         <div
           className={`absolute inset-0 bg-black/60 flex items-center justify-center transition-opacity duration-300 ${
             isHovered ? "opacity-100" : "opacity-0"
