@@ -11,77 +11,77 @@ const luxuryImages = [
     id: 1,
     title: "Modern Villa",
     thumbnail:
-      "https://sjc.microlink.io/Np39p-7dlVvRx3akUxAb4yqZMEzHQkFc0OT79-CqJqNG-TV7dA1ixG8Z8i67sCoB2uOj_qxqIuyVjGDFuiuPbg.jpeg",
+      "/chambra.jpeg",
   },
   {
     id: 2,
     title: "Luxury Kitchen",
-    thumbnail: "/placeholder.svg?height=600&width=600",
+    thumbnail: "/chambra.jpeg",
   },
   {
     id: 3,
     title: "Elegant Living Room",
-    thumbnail: "/placeholder.svg?height=600&width=600",
+    thumbnail: "/constructionundersite.webp",
   },
   {
     id: 4,
     title: "Master Bedroom",
-    thumbnail: "/placeholder.svg?height=600&width=600",
+    thumbnail: "/chambra3.jpeg",
   },
   {
     id: 5,
     title: "Infinity Pool",
-    thumbnail: "/placeholder.svg?height=600&width=600",
+    thumbnail: "chambra4.jpeg",
   },
   {
     id: 6,
     title: "Modern Bathroom",
-    thumbnail: "/placeholder.svg?height=600&width=600",
+    thumbnail: "/chambra5.jpg",
   },
   {
     id: 7,
     title: "Outdoor Terrace",
-    thumbnail: "/placeholder.svg?height=600&width=600",
+    thumbnail: "/chambra.jpeg",
   },
   {
     id: 8,
     title: "Dining Area",
-    thumbnail: "/placeholder.svg?height=600&width=600",
+    thumbnail: "/construction.webp",
   },
   {
     id: 9,
     title: "Home Office",
-    thumbnail: "/placeholder.svg?height=600&width=600",
+    thumbnail: "/cuisina.jpg",
   },
   {
     id: 10,
     title: "Garden View",
-    thumbnail: "/placeholder.svg?height=600&width=600",
+    thumbnail: "/dar.jpeg",
   },
   {
     id: 11,
     title: "Penthouse View",
-    thumbnail: "/placeholder.svg?height=600&width=600",
+    thumbnail: "/garden.jpg",
   },
   {
     id: 12,
     title: "Building Facade",
-    thumbnail: "/placeholder.svg?height=600&width=600",
+    thumbnail: "/homepool.jpg",
   },
   {
     id: 13,
     title: "Rooftop Lounge",
-    thumbnail: "/placeholder.svg?height=600&width=600",
+    thumbnail: "/outdoor.jpeg",
   },
   {
     id: 14,
     title: "Entertainment Room",
-    thumbnail: "/placeholder.svg?height=600&width=600",
+    thumbnail: "/salon.jpg",
   },
   {
     id: 15,
     title: "Private Gym",
-    thumbnail: "/placeholder.svg?height=600&width=600",
+    thumbnail: "/saldubain.jpeg",
   },
 ]
 

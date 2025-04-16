@@ -11,10 +11,9 @@ import FadeIn from "@/components/animations/fade-in"
 import StaggerIn from "@/components/animations/stagger-in"
 import ProjectCard from "@/components/project-card"
 import { projects } from "@/data/projects"
-import DesignExcellenceSection from "@/components/home/design-excellence-section"
 import HeroParallaxSection from "@/components/home/hero-parallax"
-import Testimonial from "@/components/home/testimonial"
 import Mobileapp from "@/components/home/mobileapp"
+import Testimonial from "@/components/home/testimonial"
 //TODO:nzido fiha carousel chaabba
 /**
  * The homepage of the application.
