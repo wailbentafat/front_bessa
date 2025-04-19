@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image"
 import Link from "next/link"
 import { ChevronRight, Download } from "lucide-react"
@@ -14,6 +15,7 @@ import { projects } from "@/data/projects"
 import HeroParallaxSection from "@/components/home/hero-parallax"
 import Mobileapp from "@/components/home/mobileapp"
 import Testimonial from "@/components/home/testimonial"
+import { useProjects } from "@/action/fetchproject"
 //TODO:nzido fiha carousel chaabba
 /**
  * The homepage of the application.
@@ -24,6 +26,7 @@ import Testimonial from "@/components/home/testimonial"
  * @returns The JSX element for the homepage.
  */
 export default function Home() {
+  const {data,isLoading,isError} = useProjects()
   return (
     <>
       
@@ -34,22 +37,38 @@ export default function Home() {
         <div className="container">
           <FadeIn direction="up">
             <div className="flex flex-col items-center text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Featured Projects</h2>
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Featured Projet</h2>
               <p className="mt-4 max-w-3xl text-muted-foreground">
                 Discover our exclusive collection of luxury properties designed for modern living
               </p>
             </div>
           </FadeIn>
 
-          <StaggerIn baseDelay={100} staggerDelay={150}>
+          {isLoading ? (
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {projects.slice(0, 3).map((project) => (
-                <div key={project.id}>
-                  <ProjectCard project={project} />
-                </div>
+              {[...Array(3)].map((_, i) => (
+                <div key={i} className="h-64 w-full bg-gray-200 rounded-md animate-pulse" />
               ))}
             </div>
-          </StaggerIn>
+          ) : isError ? (
+            <div className="text-center text-red-600">
+              <p>There was an error loading the projects.</p>
+            </div>
+          ) : data ? (
+            <StaggerIn baseDelay={100} staggerDelay={150}>
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {data.slice(0, 3).map((project) => (
+                  <div key={project.id}>
+                    <ProjectCard project={project} />
+                  </div>
+                ))}
+              </div>
+            </StaggerIn>
+          ) : (
+            <div className="text-center text-gray-600">
+              <p>No projects found.</p>
+            </div>
+          )}
 
           <FadeIn direction="up" delay={800}>
             <div className="mt-12 text-center">
@@ -264,4 +283,6 @@ const stats = [
   { value: "30+", label: "Luxury Residences" },
   { value: "24/7", label: "Customer Support" },
 ]
+
+
 
