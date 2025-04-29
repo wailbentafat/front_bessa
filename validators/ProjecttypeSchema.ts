@@ -1,49 +1,49 @@
+// // validators/ProjectTypeSchema.ts
 import { z } from "zod";
 
-// Define schema for the floor plans
-export const FloorPlanSchema = z.object({
-  id: z.string(),
-  name: z.string(),
-  image: z.string().url(), // Assuming the image is a URL
-  size: z.string(), // You can change this type if size is always numeric or needs to be parsed
-  bedrooms: z.number().int(),
-  bathrooms: z.number().int(),
-  description: z.string(),
-});
-
-// Define schema for the agent
-export const AgentSchema = z.object({
+// Define schemas for nested objects
+const ApiAgentSchema = z.object({
   name: z.string(),
   title: z.string(),
   phone: z.string(),
-  email: z.string().email(),
-  image: z.string().url().optional(), // Agent image is optional
+  email: z.string(),
+  image: z.string().nullable().optional()
 });
 
-// Define schema for the ProjectType
-export const ProjectTypeSchema = z.object({
+const ApiFloorPlanSchema = z.object({
+  id: z.union([z.string(), z.number()]), // Accept both string and number
+  name: z.string(),
+  image: z.string(),
+  size: z.string(),
+  bedrooms: z.number(),
+  bathrooms: z.number(),
+  description: z.string()
+});
+
+// Define the main project schema that matches the API response format
+export const ApiProjectTypeSchema = z.object({
   id: z.string(),
   name: z.string(),
   location: z.string(),
   description: z.string(),
-  fullDescription: z.string(),
-  aboutText: z.string(),
-  image: z.string().url(),
-  gallery: z.array(z.string().url()), // Array of image URLs
-  price: z.string(), // Price is still a string in your data, you might want to parse it
-  propertyType: z.string(),
-  size: z.number().int(),
-  bedrooms: z.number().int(),
-  bathrooms: z.number().int(),
+  full_description: z.string().optional().default(""),
+  about_text: z.string().optional().default(""),
+  image: z.string(),
+  gallery: z.array(z.string()).optional().default([]),
+  price: z.string().or(z.number()).transform(val => 
+    typeof val === 'string' ? parseFloat(val) : val
+  ),
+  property_type: z.string(),
+  size: z.number(),
+  bedrooms: z.number(),
+  bathrooms: z.number(),
   status: z.string(),
-  tags: z.array(z.string()),
-  features: z.array(z.string()),
-  amenities: z.array(z.string()),
-  nearbyAmenities: z.array(z.string()),
-  floorPlans: z.array(FloorPlanSchema).optional(), // Floor plans is optional
-  mapPosition: z.object({
-    lat: z.number(),
-    lng: z.number(),
-  }),
-  agent: AgentSchema,
+  tags: z.array(z.string()).optional().default([]),
+  features: z.array(z.string()).optional().default([]),
+  amenities: z.array(z.string()).optional().default([]),
+  nearby_amenities: z.array(z.string()).optional().default([]),
+  lat: z.number(),
+  lng: z.number(),
+  agent: ApiAgentSchema.optional().nullable(),
+  floorPlans: z.array(ApiFloorPlanSchema).optional().default([])
 });

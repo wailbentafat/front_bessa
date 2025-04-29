@@ -14,9 +14,13 @@ export function useProjects() {
         console.error("Failed to fetch projects:", res.statusText);
         throw new Error("Failed to fetch projects");
       }
-
-      console.log("Parsing JSON response...");
+    console.log ("Response status:", res.status);
+      console.log("Response headers:", res.headers);
       const data = await res.json();
+      console.log("Parsing JSON response...");
+      
+      console.log("Data fetched successfully:", data);
+      console.log("Data type:", typeof data);
 
       try {
         console.log("Validating fetched data...");

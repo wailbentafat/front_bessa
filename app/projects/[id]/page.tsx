@@ -1,5 +1,6 @@
+"use client";
 import Image from "next/image"
-import { notFound } from "next/navigation"
+import { notFound, useRouter } from "next/navigation"
 import { projects } from "@/data/projects"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -7,10 +8,26 @@ import { Badge } from "@/components/ui/badge"
 import { MapPin, Home, Ruler, Bath, BedDouble, Check, Phone, Mail } from "lucide-react"
 import ProjectCard from "@/components/project-card"
 import FloorPlanViewer from "@/components/floor-plan-viewer"
-
+import { useProject} from "@/hooks/useproject"
+import { Map } from "@/components/map/map_comp"
+import Link from "next/link";
 export default function ProjectPage({ params }: { params: { id: string } }) {
-  const project = projects.find((p) => p.id === params.id)
+ 
 
+  const { id } =  params;
+  console.log("Project ID:", id);
+  const { data: project , isLoading, isError} = useProject(id);
+  console.log("Project data:", project);
+  if (isError) {
+    console.error("Error fetching project:", isError);
+    return <div>Error loading project</div>
+  }
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
+
+
+  console.log("Projects data:", project);
   if (!project) {
     notFound()
   }
@@ -182,22 +199,17 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                   </TabsContent>
 
                   <TabsContent value="location" className="mt-6">
-                    <div className="space-y-6">
-                      <h2 className="text-2xl font-bold mb-4">Location</h2>
+  <div className="space-y-6">
+    <h2 className="text-2xl font-bold mb-4">Location</h2>
 
-                      <div className="relative h-[400px] w-full rounded-lg overflow-hidden border">
-                        <Image
-                          src="/placeholder.svg?height=800&width=1200"
-                          alt="Map location"
-                          fill
-                          className="object-cover"
-                        />
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="bg-white p-3 rounded-full shadow-lg">
-                            <MapPin className="h-6 w-6 text-red-600" />
-                          </div>
-                        </div>
-                      </div>
+    <div className="h-[400px] w-full rounded-lg overflow-hidden border">
+      <Map
+        filteredProjects={[project]} // pass single project in array
+        selectedProject={project}
+        setSelectedProject={() => {}} // no-op here, not clickable
+      />
+    </div>
+
 
                       <div className="mt-6">
                         <h3 className="text-xl font-bold mb-4">Nearby Amenities</h3>
@@ -241,7 +253,9 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                         <span>{project.agent.email}</span>
                       </div>
                     </div>
+                    <Link href="/contact" className="w-full">
                     <Button className="w-full bg-red-600 hover:bg-red-700 text-white">Schedule Viewing</Button>
+                    </Link>
                   </div>
 
                   <div className="bg-slate-50 rounded-lg p-6">
@@ -276,35 +290,4 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
     </div>
   )
 }
-
-// Default floor plans in case the project doesn't have any
-const defaultFloorPlans = [
-  {
-    id: "floor-1",
-    name: "Type A - 2 Bedroom",
-    image: "/placeholder.svg?height=800&width=1200",
-    size: "120 sqm",
-    bedrooms: 2,
-    bathrooms: 2,
-    description: "Spacious 2-bedroom apartment with open living area and private balcony.",
-  },
-  {
-    id: "floor-2",
-    name: "Type B - 3 Bedroom",
-    image: "/placeholder.svg?height=800&width=1200",
-    size: "150 sqm",
-    bedrooms: 3,
-    bathrooms: 2,
-    description: "Family-friendly 3-bedroom apartment with master suite and large terrace.",
-  },
-  {
-    id: "floor-3",
-    name: "Type C - Penthouse",
-    image: "/placeholder.svg?height=800&width=1200",
-    size: "220 sqm",
-    bedrooms: 4,
-    bathrooms: 3,
-    description: "Luxury penthouse with panoramic views, private roof access, and premium finishes.",
-  },
-]
 

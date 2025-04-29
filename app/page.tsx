@@ -12,10 +12,19 @@ import FadeIn from "@/components/animations/fade-in"
 import StaggerIn from "@/components/animations/stagger-in"
 import ProjectCard from "@/components/project-card"
 import { projects } from "@/data/projects"
-import HeroParallaxSection from "@/components/home/hero-parallax"
+
 import Mobileapp from "@/components/home/mobileapp"
 import Testimonial from "@/components/home/testimonial"
 import { useProjects } from "@/action/fetchproject"
+import dynamic from "next/dynamic"
+
+const HeroParallaxSection = dynamic(() => import("@/components/home/hero-parallax"), {
+  ssr: false,
+  loading: () => (
+    <div className="h-[500px] w-full bg-gray-100 animate-pulse rounded-md" />
+  ),
+})
+
 //TODO:nzido fiha carousel chaabba
 /**
  * The homepage of the application.

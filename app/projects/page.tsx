@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { projects } from "@/data/projects"
 import ProjectCard from "@/components/project-card"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
@@ -10,8 +9,18 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
 import { Badge } from "@/components/ui/badge"
 import { motion, AnimatePresence } from "framer-motion"
+// import { useProjects } from "@/action/fetchproject"
+import { Skeleton } from "@/components/ui/skeleton"
+import { useProjects } from "../../hooks/useproject"
 
 export default function ProjectsPage() {
+  const { data: projects = [], isLoading, isError } = useProjects();
+  console.log("Projects data:", projects);
+  console.log("Is loading:", isLoading);
+  
+
+
+
  
   const locations = Array.from(new Set(projects.map((p) => p.location.split(",")[0].trim())))
 
@@ -22,10 +31,10 @@ export default function ProjectsPage() {
   const statuses = Array.from(new Set(projects.map((p) => p.status)))
 
 
-  const [selectedLocation, setSelectedLocation] = useState<string>("all")
-  const [selectedPropertyType, setSelectedPropertyType] = useState<string>("all")
-  const [selectedBedrooms, setSelectedBedrooms] = useState<string>("any")
-  const [selectedStatus, setSelectedStatus] = useState<string>("all")
+  const [selectedLocation, setSelectedLocation] = useState<string>("all" as string)
+  const [selectedPropertyType, setSelectedPropertyType] = useState<string>("all" as string)
+  const [selectedBedrooms, setSelectedBedrooms] = useState<string>("any" as string)
+  const [selectedStatus, setSelectedStatus] = useState<string>("all" as string)
   const [priceRange, setPriceRange] = useState<number[]>([0, 100])
   const [amenities, setAmenities] = useState<Record<string, boolean>>({
     pool: false,
@@ -90,6 +99,55 @@ export default function ProjectsPage() {
 
   const handleAmenityChange = (amenity: string, checked: boolean) => {
     setAmenities((prev) => ({ ...prev, [amenity]: checked }))
+  }
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex flex-col">
+        <main className="flex-1 p-5">
+          <section className="py-8">
+            <div className="container">
+              <h1 className="text-3xl font-bold mb-6">Our Properties</h1>
+              <p className="text-muted-foreground mb-8 max-w-3xl">
+                Browse our exclusive collection of luxury properties across Lebanon. Use the filters to find your perfect
+                home.
+              </p>
+  
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {[...Array(6)].map((_, i) => (
+                  <div key={i} className="rounded-lg bg-white shadow-sm p-4 space-y-4">
+                    <Skeleton className="h-48 w-full rounded-lg" />
+                    <Skeleton className="h-6 w-3/4" />
+                    <Skeleton className="h-4 w-1/2" />
+                    <div className="flex gap-2">
+                      <Skeleton className="h-4 w-1/4" />
+                      <Skeleton className="h-4 w-1/4" />
+                    </div>
+                    <Skeleton className="h-10 w-full" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    );
+  }
+  if (isError) {
+    return (
+      <div className="min-h-screen flex flex-col">
+        <main className="flex-1 p-5">
+          <section className="py-8">
+            <div className="container">
+              <h1 className="text-3xl font-bold mb-6">Our Properties</h1>
+              <p className="text-muted-foreground mb-8 max-w-3xl">
+                {isError && <p className="text-red-600">Error: {isError.message}</p>}
+                
+              </p>
+            </div>
+          </section>
+        </main>
+      </div>
+    )
   }
 
   return (

@@ -25,6 +25,15 @@ interface MapProps {
 }
 
 export function Map({ filteredProjects, selectedProject, setSelectedProject }: MapProps) {
+  const handleProjectClick = (id: string) => {
+    setSelectedProject(id)
+  }
+  const handleMapClick = () => {
+    setSelectedProject(null)
+  }
+  const handleProjectClose = () => {
+    setSelectedProject(null)
+  }
   return (
     <div className="flex-1">
       <div className="relative h-[70vh] w-full rounded-lg overflow-hidden border">
