@@ -28,12 +28,29 @@ export default function ContactForm() {
   });
 
   const onSubmit = async (data: any) => {
-    console.log("Form Data:", data);
+    try {
+      const res = await fetch("http://localhost:8000/api/contact/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
   
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    reset();
-    alert("Message sent successfully!");
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(
+          errorData.detail || Object.values(errorData).join(", ") || "Failed"
+        );
+      }
+  
+      reset();
+      alert("Message sent successfully!");
+    } catch (error: any) {
+      alert("Submission failed: " + error.message);
+    }
   };
+  
 
   return (
     <div className="lg:col-span-2">
