@@ -15,9 +15,9 @@ export default function ContactPage() {
         <div className="absolute inset-0 flex items-center">
           <div className="container">
             <FadeIn direction="up">
-              <h1 className="text-4xl font-bold text-white mb-4 p-5">Contact Us</h1>
+              <h1 className="text-4xl font-bold text-white mb-4 p-5">Nous contacter</h1>
               <p className="text-xl text-white/90 max-w-2xl p-5">
-                Get in touch with our team for any inquiries about our properties or services
+                Contactez notre équipe pour toute question concernant nos propriétés ou services
               </p>
             </FadeIn>
           </div>
@@ -29,9 +29,9 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 p-5">
             <div className="lg:col-span-1">
               <FadeIn>
-                <h2 className="text-2xl font-bold mb-6">Get In Touch</h2>
+                <h2 className="text-2xl font-bold mb-6">Nous contacter</h2>
                 <p className="text-muted-foreground mb-8">
-                  Our team of experts is ready to assist you with any questions or inquiries you may have about our
+                  Notre équipe d'experts est prête à vous aider avec toutes vos questions ou demandes concernant nos
                   properties or services.
                 </p>
 

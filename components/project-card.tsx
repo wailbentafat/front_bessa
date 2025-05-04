@@ -49,7 +49,7 @@ export default function ProjectCard({ project, variant = "default" }: ProjectCar
           <span className="font-bold text-red-600">${project.price.toLocaleString()}</span>
           <Link href={`/projects/${project.id}`}>
             <Button size="sm" className="bg-red-600 hover:bg-red-700 text-white">
-              View Details
+              Voir les détails
             </Button>
           </Link>
         </div>

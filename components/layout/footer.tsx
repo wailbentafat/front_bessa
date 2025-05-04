@@ -16,8 +16,7 @@ export default function Footer() {
               </Link>
             </div>
             <p className="text-slate-400 mb-4">
-              Bessa Real Estate is a premier luxury property developer in Lebanon, creating exceptional living spaces
-              since 2003.
+              Bessa Real Estate est un développeur immobilier de luxe de premier plan au Liban, créant des espaces de vie exceptionnels depuis 2003.
             </p>
             <div className="flex gap-4">
               <a href="#" className="text-slate-400 hover:text-white transition-colors">
@@ -71,11 +70,11 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-bold text-lg mb-4">Quick Links</h3>
+            <h3 className="font-bold text-lg mb-4">Liens rapides</h3>
             <ul className="space-y-2">
               <li>
                 <Link href="/" className="text-slate-400 hover:text-white transition-colors">
-                  Home
+                  Accueil
                 </Link>
               </li>
               <li>
@@ -90,7 +89,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/about" className="text-slate-400 hover:text-white transition-colors">
-                  About Us
+                  À propos de nous
                 </Link>
               </li>
               <li>
@@ -146,11 +145,11 @@ export default function Footer() {
           <div>
             <h3 className="font-bold text-lg mb-4">Newsletter</h3>
             <p className="text-slate-400 mb-4">
-              Subscribe to our newsletter for the latest updates on new properties and exclusive offers.
+              Abonnez-vous à notre newsletter pour recevoir les dernières mises à jour sur les nouvelles propriétés et les offres exclusives.
             </p>
             <div className="flex gap-2">
-              <Input placeholder="Your email" className="bg-slate-800 border-slate-700 text-white" />
-              <Button className="bg-red-600 hover:bg-red-700 text-white">Subscribe</Button>
+              <Input placeholder="Votre email" className="bg-slate-800 border-slate-700 text-white" />
+              <Button className="bg-red-600 hover:bg-red-700 text-white">S'abonner</Button>
             </div>
           </div>
         </div>

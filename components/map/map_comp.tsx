@@ -13,7 +13,7 @@ const LeafletMap = dynamic(() => import("./leafletmap").then((mod) => mod.defaul
   ssr: false,
   loading: () => (
     <div className="h-[70vh] w-full rounded-lg overflow-hidden border bg-slate-100 flex items-center justify-center">
-      <div className="animate-pulse">Loading map...</div>
+      <div className="animate-pulse">Chargement de la carte...</div>
     </div>
   ),
 }) as typeof import("./leafletmap").default
@@ -75,7 +75,7 @@ export function Map({ filteredProjects, selectedProject, setSelectedProject }: M
                       </div>
                       <div className="mt-3 grid grid-cols-2 gap-2 text-sm">
                         <div>
-                          <span className="text-muted-foreground">Price:</span>
+                          <span className="text-muted-foreground">Prix:</span>
                           <div className="font-medium">${project.price.toLocaleString()}</div>
                         </div>
                         <div>
@@ -83,17 +83,17 @@ export function Map({ filteredProjects, selectedProject, setSelectedProject }: M
                           <div className="font-medium">{project.propertyType}</div>
                         </div>
                         <div>
-                          <span className="text-muted-foreground">Size:</span>
+                          <span className="text-muted-foreground">Taille:</span>
                           <div className="font-medium">{project.size} sqm</div>
                         </div>
                         <div>
-                          <span className="text-muted-foreground">Bedrooms:</span>
+                          <span className="text-muted-foreground">Chambres:</span>
                           <div className="font-medium">{project.bedrooms}</div>
                         </div>
                       </div>
                       <div className="mt-3">
                         <Link href={`/projects/${project.id}`}>
-                          <Button className="w-full bg-red-600 hover:bg-red-700 text-white">View Details</Button>
+                          <Button className="w-full bg-red-600 hover:bg-red-700 text-white">Voir les détails</Button>
                         </Link>
                       </div>
                     </div>

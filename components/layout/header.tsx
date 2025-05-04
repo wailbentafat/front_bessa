@@ -97,7 +97,7 @@ export default function Header() {
                 variant="ghost"
                 className="flex  items-center gap-1 text-sm font-bold transition-colors hover:text-red-600"
               >
-                More <ChevronDown className="h-4 w-4" />
+                Plus <ChevronDown className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-40">

@@ -26,9 +26,9 @@ export default function AboutPage() {
         <div className="absolute inset-0 flex items-center">
           <div className="container">
             <FadeIn direction="up">
-              <h1 className="text-4xl font-bold text-white mb-4 p-5">About sopimem Real Estate</h1>
+              <h1 className="text-4xl font-bold text-white mb-4 p-5">À propos de sopimem Real Estate</h1>
               <p className="text-xl text-white/90 max-w-2xl p-5">
-                Building exceptional properties and creating luxury living experiences since 2003
+                Création d'exceptionnelles propriétés et d'expériences de vie de luxe depuis 2003
               </p>
             </FadeIn>
           </div>
@@ -40,29 +40,25 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <FadeIn direction="right">
               <div>
-                <h2 className="text-3xl font-bold mb-6">Our Story</h2>
+                <h2 className="text-3xl font-bold mb-6">Notre histoire</h2>
                 <p className="text-muted-foreground mb-4">
-                  Founded in 2003, sopimem Real Estate has grown to become one of Lebanon's premier luxury property
-                  developers. What started as a small family business has evolved into a respected name in the real
-                  estate industry, known for our commitment to quality, innovation, and customer satisfaction.
+                  Fondée en 2003, sopimem Real Estate est devenue l'un des principaux développeurs de propriétés de luxe au Liban. Ce qui a commencé comme une petite entreprise familiale est devenu un nom respecté dans l'industrie immobilière, reconnu pour notre engagement envers la qualité, l'innovation et la satisfaction des clients.
                 </p>
                 <p className="text-muted-foreground mb-6">
-                  Over the past two decades, we have successfully delivered more than 30 residential and commercial
-                  projects across Lebanon, creating homes and spaces that reflect our passion for exceptional design and
-                  craftsmanship.
+                  Au cours des deux dernières décennies, nous avons réussi à livrer plus de 30 projets résidentiels et commerciaux au Liban, créant des maisons et des espaces qui reflètent notre passion pour le design exceptionnel et l'artisanat.
                 </p>
                 <div className="flex gap-4">
                   <div className="text-center">
                     <div className="text-3xl font-bold text-red-600">20+</div>
-                    <div className="text-sm text-muted-foreground">Years Experience</div>
+                    <div className="text-sm text-muted-foreground">Années d'expérience</div>
                   </div>
                   <div className="text-center">
                     <div className="text-3xl font-bold text-red-600">30+</div>
-                    <div className="text-sm text-muted-foreground">Projects Completed</div>
+                    <div className="text-sm text-muted-foreground">Projets terminés</div>
                   </div>
                   <div className="text-center">
                     <div className="text-3xl font-bold text-red-600">6,000+</div>
-                    <div className="text-sm text-muted-foreground">Happy Residents</div>
+                    <div className="text-sm text-muted-foreground">Résidents satisfaits</div>
                   </div>
                 </div>
               </div>
@@ -85,10 +81,9 @@ export default function AboutPage() {
         <div className="container">
           <FadeIn>
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4">Our Values</h2>
+              <h2 className="text-3xl font-bold mb-4">Nos valeurs</h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                At sopimem Real Estate, our core values guide everything we do, from design and construction to customer
-                service and community engagement.
+                Chez sopimem Real Estate, nos valeurs fondamentales guident tout ce que nous faisons, du design et de la construction au service client et à l'engagement communautaire.
               </p>
             </div>
           </FadeIn>

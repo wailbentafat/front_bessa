@@ -46,9 +46,9 @@ export default function Home() {
         <div className="container">
           <FadeIn direction="up">
             <div className="flex flex-col items-center text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Featured Projet</h2>
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Projet en vedette</h2>
               <p className="mt-4 max-w-3xl text-muted-foreground">
-                Discover our exclusive collection of luxury properties designed for modern living
+                Découvrez notre collection exclusive de propriétés de luxe conçues pour une vie moderne
               </p>
             </div>
           </FadeIn>
@@ -61,7 +61,7 @@ export default function Home() {
             </div>
           ) : isError ? (
             <div className="text-center text-red-600">
-              <p>There was an error loading the projects.</p>
+              <p>Une erreur est survenue lors du chargement des projets.</p>
             </div>
           ) : data ? (
             <StaggerIn baseDelay={100} staggerDelay={150}>
@@ -75,7 +75,7 @@ export default function Home() {
             </StaggerIn>
           ) : (
             <div className="text-center text-gray-600">
-              <p>No projects found.</p>
+              <p>Aucun projet trouvé.</p>
             </div>
           )}
 
@@ -83,7 +83,7 @@ export default function Home() {
             <div className="mt-12 text-center">
               <Link href="/projects">
                 <Button variant="outline" className="border-red-600 text-red-600 hover:bg-red-50">
-                  View All Properties
+                  Voir toutes les propriétés
                 </Button>
               </Link>
             </div>
@@ -287,8 +287,8 @@ export default function Home() {
 
 // Sample data
 const stats = [
-  { value: "20+", label: "Years Experience" },
-  { value: "6,000+", label: "Apartments Delivered" },
+  { value: "20+", label: "Années d'expérience" },
+  { value: "6,000+", label: "Appartements livrés" },
   { value: "30+", label: "Luxury Residences" },
   { value: "24/7", label: "Customer Support" },
 ]

@@ -1,27 +1,27 @@
  export const team = [
     {
       name: "Ahmad Bessa",
-      position: "Founder & CEO",
+      position: "Fondateur & PDG",
       image: "/placeholder.svg?height=300&width=300",
-      bio: "With over 30 years of experience in real estate development, Ahmad founded Bessa Real Estate with a vision to create exceptional living spaces.",
+      bio: "Avec plus de 30 ans d'expérience dans le développement immobilier, Ahmad a fondé Bessa Real Estate avec une vision de créer des espaces de vie exceptionnels.",
     },
     {
       name: "Layla Khoury",
-      position: "Chief Architect",
+      position: "Architecte en chef",
       image: "/placeholder.svg?height=300&width=300",
-      bio: "Layla brings 20 years of architectural expertise, having designed award-winning residential and commercial properties across the Middle East.",
+      bio: "Layla apporte 20 ans d'expertise en architecture, ayant conçu des propriétés résidentielles et commerciales primées dans le Moyen-Orient.",
     },
     {
       name: "Omar Haddad",
-      position: "Construction Director",
+      position: "Directeur des travaux",
       image: "/placeholder.svg?height=300&width=300",
-      bio: "Omar oversees all construction activities, ensuring that every project is built to the highest standards of quality and safety.",
+      bio: "Omar supervise toutes les activités de construction, garantissant que chaque projet soit construit selon les normes les plus élevées de qualité et de sécurité.",
     },
     {
       name: "Nadia Mansour",
-      position: "Marketing Director",
+      position: "Directrice Marketing",
       image: "/placeholder.svg?height=300&width=300",
-      bio: "Nadia leads our marketing initiatives, showcasing the unique value of Bessa properties to clients around the world.",
+      bio: "Nadia dirige nos initiatives marketing, mettant en valeur la valeur unique des propriétés Bessa auprès des clients du monde entier.",
     },
   ]
   
