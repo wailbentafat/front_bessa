@@ -1,3 +1,6 @@
+"use client"
+
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -7,19 +10,225 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Card, CardContent } from "@/components/ui/card"
 import FadeIn from "@/components/animations/fade-in"
 import StaggerIn from "@/components/animations/stagger-in"
+import { useToast } from "@/components/ui/use-toast"
+import { z } from "zod"
+
+// Define the form data type
+type FormData = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  location: string;
+  area: string;
+  zoning: string;
+  price: string;
+  description: string;
+  features: string[];
+  titleDeed: File | null;
+  photos: File[] | null;
+  agreeToTerms: boolean;
+}
 
 export default function SellYourLandPage() {
+  const { toast } = useToast()
+  
+  // Form state
+  const [formData, setFormData] = useState<FormData>({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    location: "",
+    area: "",
+    zoning: "",
+    price: "",
+    description: "",
+    features: [],
+    titleDeed: null,
+    photos: null,
+    agreeToTerms: false
+  })
+  
+  const [loading, setLoading] = useState(false)
+  const [errors, setErrors] = useState<Record<string, string>>({})
+  
+  // File upload state
+  const [titleDeedName, setTitleDeedName] = useState<string>("")
+  const [photoNames, setPhotoNames] = useState<string[]>([])
+  
+  // Form validation schema
+  const formSchema = z.object({
+    firstName: z.string().min(1, "Le prénom est requis"),
+    lastName: z.string().min(1, "Le nom est requis"),
+    email: z.string().email("Adresse e-mail invalide"),
+    phone: z.string().min(5, "Numéro de téléphone invalide"),
+    location: z.string().min(1, "L'emplacement est requis"),
+    area: z.string().min(1, "La superficie est requise"),
+    zoning: z.string().min(1, "Le type de zonage est requis"),
+    price: z.string().min(1, "Le prix demandé est requis"),
+    agreeToTerms: z.literal(true, {
+      errorMap: () => ({ message: "Vous devez accepter les conditions" }),
+    }),
+  })
+  
+  // Handle form input changes
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setFormData(prev => ({ ...prev, [name]: value }))
+  }
+  
+  // Handle select changes
+  const handleSelectChange = (name: string, value: string) => {
+    setFormData(prev => ({ ...prev, [name]: value }))
+  }
+  
+  // Handle checkbox changes
+  const handleCheckboxChange = (name: string, checked: boolean) => {
+    setFormData(prev => ({ ...prev, [name]: checked }))
+  }
+  
+  // Handle feature checkboxes
+  const handleFeatureChange = (feature: string, checked: boolean) => {
+    setFormData(prev => {
+      const features = [...prev.features]
+      if (checked && !features.includes(feature)) {
+        features.push(feature)
+      } else if (!checked && features.includes(feature)) {
+        const index = features.indexOf(feature)
+        features.splice(index, 1)
+      }
+      return { ...prev, features }
+    })
+  }
+  
+  // Handle file uploads
+  const handleTitleDeedUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setFormData(prev => ({ ...prev, titleDeed: e.target.files?.[0] || null }))
+      setTitleDeedName(e.target.files[0].name)
+    }
+  }
+  
+  const handlePhotosUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const filesArray = Array.from(e.target.files)
+      setFormData(prev => ({ ...prev, photos: filesArray }))
+      setPhotoNames(filesArray.map(file => file.name))
+    }
+  }
+  
+  // Form submission
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    
+    try {
+      // Validate form data
+      formSchema.parse(formData)
+      
+      setLoading(true)
+      setErrors({})
+      
+      // Create FormData for file uploads
+      const formDataToSend = new FormData()
+      
+      // Add text fields
+      Object.entries(formData).forEach(([key, value]) => {
+        if (key !== "titleDeed" && key !== "photos" && key !== "features") {
+          formDataToSend.append(key, String(value))
+        }
+      })
+      
+      // Add features as an array
+      formData.features.forEach((feature, index) => {
+        formDataToSend.append(`features[${index}]`, feature)
+      })
+      
+      // Add files
+      if (formData.titleDeed) {
+        formDataToSend.append("titleDeed", formData.titleDeed)
+      }
+      
+      if (formData.photos) {
+        formData.photos.forEach((photo, index) => {
+          formDataToSend.append(`photos[${index}]`, photo)
+        })
+      }
+      
+      // Send to server
+      // Replace with your actual API endpoint
+      const response = await fetch("/api/submit-land", {
+        method: "POST",
+        body: formDataToSend,
+      })
+      
+      if (!response.ok) {
+        throw new Error("Erreur lors de l'envoi du formulaire")
+      }
+      
+      // Success message
+      toast({
+        title: "Formulaire soumis avec succès",
+        description: "Nous vous contacterons bientôt concernant votre propriété.",
+      })
+      
+      // Reset form
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        location: "",
+        area: "",
+        zoning: "",
+        price: "",
+        description: "",
+        features: [],
+        titleDeed: null,
+        photos: null,
+        agreeToTerms: false
+      })
+      setTitleDeedName("")
+      setPhotoNames([])
+      
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        const errorMap: Record<string, string> = {}
+        error.errors.forEach((err) => {
+          if (err.path.length > 0) {
+            errorMap[err.path[0].toString()] = err.message
+          }
+        })
+        setErrors(errorMap)
+      } else {
+        toast({
+          variant: "destructive",
+          title: "Erreur",
+          description: "Une erreur s'est produite lors de la soumission du formulaire.",
+        })
+      }
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return (
     <div className="min-h-screen">
       <section className="relative h-[40vh] w-full overflow-hidden">
+        <img 
+          loading='lazy'
+          src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+          alt="Terrain à vendre" 
+          className="absolute inset-0 w-full h-full object-cover"
+        />
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/40" />
         <div className="absolute inset-0 flex items-center">
           <div className="container">
             <FadeIn direction="up">
-              <h1 className="text-4xl font-bold text-white mb-4 p-5">Sell Your Land to Bessa</h1>
+              <h1 className="text-4xl font-bold text-white mb-4 p-5">Vendez Votre Terrain à Bessa</h1>
               <p className="text-xl text-white/90 max-w-2xl p-5">
-                We're interested in acquiring prime land for our future developments. Submit your property details and
-                we'll get back to you with an offer.
+                Nous sommes intéressés par l'acquisition de terrains de qualité pour nos futurs développements. Soumettez 
+                les détails de votre propriété et nous vous contacterons avec une offre.
               </p>
             </FadeIn>
           </div>
@@ -32,9 +241,9 @@ export default function SellYourLandPage() {
             <div className="lg:col-span-1">
               <FadeIn>
                 <div className="sticky top-24">
-                  <h2 className="text-2xl font-bold mb-4">Why Sell to Bessa?</h2>
+                  <h2 className="text-2xl font-bold mb-4">Pourquoi Vendre à Bessa ?</h2>
                   <p className="text-muted-foreground mb-6">
-                    Selling your land to Bessa Real Estate offers numerous advantages and a seamless experience.
+                    La vente de votre terrain à Bessa Immobilier offre de nombreux avantages et une expérience sans tracas.
                   </p>
 
                   <StaggerIn baseDelay={100} staggerDelay={150}>
@@ -54,12 +263,12 @@ export default function SellYourLandPage() {
                   </StaggerIn>
 
                   <div className="mt-8 bg-slate-50 p-6 rounded-lg">
-                    <h3 className="font-bold mb-3">Have Questions?</h3>
+                    <h3 className="font-bold mb-3">Des Questions ?</h3>
                     <p className="text-sm text-muted-foreground mb-4">
-                      Our land acquisition team is ready to assist you with any questions about selling your property.
+                      Notre équipe d'acquisition de terrains est prête à vous aider pour toute question concernant la vente de votre propriété.
                     </p>
                     <div className="flex items-center gap-2">
-                      <Button className="bg-red-600 hover:bg-red-700 text-white">Contact Us</Button>
+                      <Button className="bg-red-600 hover:bg-red-700 text-white">Contactez-Nous</Button>
                     </div>
                   </div>
                 </div>
@@ -70,88 +279,150 @@ export default function SellYourLandPage() {
               <FadeIn delay={200}>
                 <Card>
                   <CardContent className="p-6">
-                    <h2 className="text-2xl font-bold mb-6">Land Submission Form</h2>
-                    <form className="space-y-6">
+                    <h2 className="text-2xl font-bold mb-6">Formulaire de Soumission de Terrain</h2>
+                    <form className="space-y-6" onSubmit={handleSubmit}>
                       <div className="space-y-2">
-                        <h3 className="text-lg font-medium">Owner Information</h3>
+                        <h3 className="text-lg font-medium">Informations du Propriétaire</h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                           <div className="space-y-2">
-                            <Label htmlFor="first-name">First Name</Label>
-                            <Input id="first-name" placeholder="Enter your first name" />
+                            <Label htmlFor="firstName">Prénom</Label>
+                            <Input 
+                              id="firstName" 
+                              name="firstName"
+                              value={formData.firstName}
+                              onChange={handleChange}
+                              placeholder="Entrez votre prénom" 
+                            />
+                            {errors.firstName && <p className="text-sm text-red-500">{errors.firstName}</p>}
                           </div>
                           <div className="space-y-2">
-                            <Label htmlFor="last-name">Last Name</Label>
-                            <Input id="last-name" placeholder="Enter your last name" />
+                            <Label htmlFor="lastName">Nom</Label>
+                            <Input 
+                              id="lastName" 
+                              name="lastName"
+                              value={formData.lastName}
+                              onChange={handleChange}
+                              placeholder="Entrez votre nom"
+                            />
+                            {errors.lastName && <p className="text-sm text-red-500">{errors.lastName}</p>}
                           </div>
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                           <div className="space-y-2">
                             <Label htmlFor="email">Email</Label>
-                            <Input id="email" type="email" placeholder="Enter your email" />
+                            <Input 
+                              id="email" 
+                              name="email"
+                              value={formData.email}
+                              onChange={handleChange}
+                              type="email" 
+                              placeholder="Entrez votre email" 
+                            />
+                            {errors.email && <p className="text-sm text-red-500">{errors.email}</p>}
                           </div>
                           <div className="space-y-2">
-                            <Label htmlFor="phone">Phone</Label>
-                            <Input id="phone" placeholder="Enter your phone number" />
+                            <Label htmlFor="phone">Téléphone</Label>
+                            <Input 
+                              id="phone" 
+                              name="phone"
+                              value={formData.phone}
+                              onChange={handleChange}
+                              placeholder="Entrez votre numéro de téléphone" 
+                            />
+                            {errors.phone && <p className="text-sm text-red-500">{errors.phone}</p>}
                           </div>
                         </div>
                       </div>
 
                       <div className="border-t pt-6 space-y-2">
-                        <h3 className="text-lg font-medium">Property Information</h3>
+                        <h3 className="text-lg font-medium">Informations sur la Propriété</h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                           <div className="space-y-2">
-                            <Label htmlFor="location">Location</Label>
-                            <Input id="location" placeholder="City, District" />
+                            <Label htmlFor="location">Emplacement</Label>
+                            <Input 
+                              id="location" 
+                              name="location"
+                              value={formData.location}
+                              onChange={handleChange}
+                              placeholder="Ville, District" 
+                            />
+                            {errors.location && <p className="text-sm text-red-500">{errors.location}</p>}
                           </div>
                           <div className="space-y-2">
-                            <Label htmlFor="area">Land Area (sqm)</Label>
-                            <Input id="area" type="number" placeholder="Enter land area" />
+                            <Label htmlFor="area">Superficie du Terrain (m²)</Label>
+                            <Input 
+                              id="area" 
+                              name="area"
+                              value={formData.area}
+                              onChange={handleChange}
+                              type="number" 
+                              placeholder="Entrez la superficie" 
+                            />
+                            {errors.area && <p className="text-sm text-red-500">{errors.area}</p>}
                           </div>
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                           <div className="space-y-2">
-                            <Label htmlFor="zoning">Zoning Type</Label>
-                            <Select>
+                            <Label htmlFor="zoning">Type de Zonage</Label>
+                            <Select onValueChange={(value) => handleSelectChange("zoning", value)}>
                               <SelectTrigger id="zoning">
-                                <SelectValue placeholder="Select zoning type" />
+                                <SelectValue placeholder="Sélectionnez le type de zonage" />
                               </SelectTrigger>
                               <SelectContent>
-                                <SelectItem value="residential">Residential</SelectItem>
+                                <SelectItem value="residential">Résidentiel</SelectItem>
                                 <SelectItem value="commercial">Commercial</SelectItem>
-                                <SelectItem value="mixed">Mixed Use</SelectItem>
-                                <SelectItem value="agricultural">Agricultural</SelectItem>
-                                <SelectItem value="other">Other</SelectItem>
+                                <SelectItem value="mixed">Usage Mixte</SelectItem>
+                                <SelectItem value="agricultural">Agricole</SelectItem>
+                                <SelectItem value="other">Autre</SelectItem>
                               </SelectContent>
                             </Select>
+                            {errors.zoning && <p className="text-sm text-red-500">{errors.zoning}</p>}
                           </div>
                           <div className="space-y-2">
-                            <Label htmlFor="price">Asking Price (USD)</Label>
-                            <Input id="price" type="number" placeholder="Enter asking price" />
+                            <Label htmlFor="price">Prix Demandé (EUR)</Label>
+                            <Input 
+                              id="price" 
+                              name="price"
+                              value={formData.price}
+                              onChange={handleChange}
+                              type="number" 
+                              placeholder="Entrez le prix demandé" 
+                            />
+                            {errors.price && <p className="text-sm text-red-500">{errors.price}</p>}
                           </div>
                         </div>
 
                         <div className="space-y-2">
-                          <Label htmlFor="description">Property Description</Label>
+                          <Label htmlFor="description">Description de la Propriété</Label>
                           <Textarea
                             id="description"
-                            placeholder="Describe your land, including topography, access roads, utilities, etc."
+                            name="description"
+                            value={formData.description}
+                            onChange={handleChange}
+                            placeholder="Décrivez votre terrain, incluant la topographie, les routes d'accès, les services publics, etc."
                             className="min-h-32"
                           />
                         </div>
 
                         <div className="space-y-2">
-                          <Label>Property Features</Label>
+                          <Label>Caractéristiques de la Propriété</Label>
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             {propertyFeatures.map((feature, index) => (
                               <div key={index} className="flex items-center space-x-2">
-                                <Checkbox id={`feature-${index}`} />
+                                <Checkbox 
+                                  id={`feature-${index}`} 
+                                  checked={formData.features.includes(feature.value)}
+                                  onCheckedChange={(checked) => 
+                                    handleFeatureChange(feature.value, checked === true)
+                                  }
+                                />
                                 <label
                                   htmlFor={`feature-${index}`}
                                   className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                                 >
-                                  {feature}
+                                  {feature.label}
                                 </label>
                               </div>
                             ))}
@@ -162,11 +433,17 @@ export default function SellYourLandPage() {
                       <div className="border-t pt-6 space-y-2">
                         <h3 className="text-lg font-medium">Documents</h3>
                         <div className="space-y-2">
-                          <Label htmlFor="title-deed">Title Deed</Label>
+                          <Label htmlFor="titleDeed">Titre de Propriété</Label>
                           <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
-                            <input type="file" id="title-deed" className="hidden" accept=".pdf,.doc,.docx,.jpg,.png" />
+                            <input 
+                              type="file" 
+                              id="titleDeed" 
+                              className="hidden" 
+                              onChange={handleTitleDeedUpload}
+                              accept=".pdf,.doc,.docx,.jpg,.png" 
+                            />
                             <label
-                              htmlFor="title-deed"
+                              htmlFor="titleDeed"
                               className="cursor-pointer flex flex-col items-center justify-center gap-2"
                             >
                               <svg
@@ -184,16 +461,23 @@ export default function SellYourLandPage() {
                                 />
                               </svg>
                               <span className="text-sm text-muted-foreground">
-                                Click to upload title deed (PDF, DOC, DOCX, JPG, PNG)
+                                {titleDeedName ? titleDeedName : "Cliquez pour télécharger le titre de propriété (PDF, DOC, DOCX, JPG, PNG)"}
                               </span>
                             </label>
                           </div>
                         </div>
 
                         <div className="space-y-2">
-                          <Label htmlFor="photos">Property Photos</Label>
+                          <Label htmlFor="photos">Photos de la Propriété</Label>
                           <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
-                            <input type="file" id="photos" className="hidden" accept=".jpg,.jpeg,.png" multiple />
+                            <input 
+                              type="file" 
+                              id="photos" 
+                              className="hidden" 
+                              onChange={handlePhotosUpload}
+                              accept=".jpg,.jpeg,.png" 
+                              multiple 
+                            />
                             <label
                               htmlFor="photos"
                               className="cursor-pointer flex flex-col items-center justify-center gap-2"
@@ -213,7 +497,9 @@ export default function SellYourLandPage() {
                                 />
                               </svg>
                               <span className="text-sm text-muted-foreground">
-                                Click to upload property photos (JPG, PNG)
+                                {photoNames.length > 0 
+                                  ? `${photoNames.length} fichier(s) sélectionné(s)` 
+                                  : "Cliquez pour télécharger des photos de la propriété (JPG, PNG)"}
                               </span>
                             </label>
                           </div>
@@ -221,23 +507,34 @@ export default function SellYourLandPage() {
                       </div>
 
                       <div className="flex items-start space-x-2">
-                        <Checkbox id="terms" />
+                        <Checkbox 
+                          id="agreeToTerms" 
+                          checked={formData.agreeToTerms}
+                          onCheckedChange={(checked) => 
+                            handleCheckboxChange("agreeToTerms", checked === true)
+                          }
+                        />
                         <div className="grid gap-1.5 leading-none">
                           <label
-                            htmlFor="terms"
+                            htmlFor="agreeToTerms"
                             className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                           >
-                            I agree to the terms and conditions
+                            J'accepte les conditions générales
                           </label>
                           <p className="text-sm text-muted-foreground">
-                            By submitting this form, you agree to our privacy policy and allow us to contact you
-                            regarding your property.
+                            En soumettant ce formulaire, vous acceptez notre politique de confidentialité et nous autorisez à vous contacter
+                            concernant votre propriété.
                           </p>
                         </div>
                       </div>
+                      {errors.agreeToTerms && <p className="text-sm text-red-500">{errors.agreeToTerms}</p>}
 
-                      <Button type="submit" className="w-full bg-red-600 hover:bg-red-700 text-white">
-                        Submit Property
+                      <Button 
+                        type="submit" 
+                        className="w-full bg-red-600 hover:bg-red-700 text-white"
+                        disabled={loading}
+                      >
+                        {loading ? "Envoi en cours..." : "Soumettre la Propriété"}
                       </Button>
                     </form>
                   </CardContent>
@@ -251,15 +548,21 @@ export default function SellYourLandPage() {
       <section className="py-16 p-5 bg-slate-50">
         <div className="container">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Our Land Acquisition Process</h2>
+            <h2 className="text-3xl font-bold mb-4">Notre Processus d'Acquisition de Terrains</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              We've streamlined our process to make selling your land as simple and transparent as possible.
+              Nous avons simplifié notre processus pour rendre la vente de votre terrain aussi simple et transparente que possible.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {process.map((step, index) => (
               <div key={index} className="relative">
+              
+                <img 
+                  src={`/api/placeholder/120/120`}
+                  alt={step.title}
+                  className="absolute right-2 top-2 w-12 h-12 object-cover rounded-md opacity-80"
+                />
                 <div className="bg-white rounded-lg p-6 h-full shadow-sm hover:shadow-md transition-all duration-300">
                   <div className="absolute -top-4 -left-4 h-12 w-12 rounded-full bg-red-600 text-white flex items-center justify-center text-xl font-bold">
                     {index + 1}
@@ -273,12 +576,29 @@ export default function SellYourLandPage() {
               </div>
             ))}
           </div>
+          
+          <div className="mt-16">
+            <h3 className="text-2xl font-bold text-center mb-8">Types de Terrains Recherchés</h3>
+            {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {landImages.map((image, index) => (
+                <div key={index} className="relative overflow-hidden rounded-lg h-64 group">
+                  <img 
+                    src={image.src} 
+                    alt={image.alt}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+                    <p className="text-white font-medium p-4">{image.alt}</p>
+                  </div>
+                </div>
+              ))}
+            </div> */}
+          </div>
         </div>
       </section>
     </div>
   )
 }
-
 const benefits = [
   {
     icon: (
@@ -297,8 +617,8 @@ const benefits = [
         />
       </svg>
     ),
-    title: "Competitive Offers",
-    description: "We provide fair market value offers based on thorough property assessments.",
+    title: "Offres Compétitives",
+    description: "Nous proposons des offres à la juste valeur marchande basées sur des évaluations approfondies de la propriété.",
   },
   {
     icon: (
@@ -313,8 +633,8 @@ const benefits = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     ),
-    title: "Quick Process",
-    description: "Our streamlined acquisition process ensures timely transactions and closings.",
+    title: "Processus Rapide",
+    description: "Notre processus d'acquisition simplifié garantit des transactions et des clôtures rapides.",
   },
   {
     icon: (
@@ -333,8 +653,8 @@ const benefits = [
         />
       </svg>
     ),
-    title: "Secure Transactions",
-    description: "All transactions are handled with the utmost security and legal compliance.",
+    title: "Transactions Sécurisées",
+    description: "Toutes les transactions sont traitées avec la plus grande sécurité et conformité légale.",
   },
   {
     icon: (
@@ -353,42 +673,43 @@ const benefits = [
         />
       </svg>
     ),
-    title: "No Hidden Fees",
-    description: "We cover all transaction costs, with no hidden fees or unexpected charges.",
+    title: "Aucuns Frais Cachés",
+    description: "Nous prenons en charge tous les frais de transaction, sans frais cachés ni charges inattendues.",
   },
 ]
 
 const propertyFeatures = [
-  "Road Access",
-  "Water Supply",
-  "Electricity",
-  "Flat Terrain",
-  "Sloped Terrain",
-  "Sea View",
-  "Mountain View",
-  "Near Urban Area",
-  "Near Schools",
-  "Near Shopping Centers",
-  "Existing Structure",
-  "Fenced Property",
-]
+  { label: "Accès Routier", value: "Accès Routier" },
+  { label: "Alimentation en Eau", value: "Alimentation en Eau" },
+  { label: "Électricité", value: "Électricité" },
+  { label: "Terrain Plat", value: "Terrain Plat" },
+  { label: "Terrain en Pente", value: "Terrain en Pente" },
+  { label: "Vue sur la Mer", value: "Vue sur la Mer" },
+  { label: "Vue sur la Montagne", value: "Vue sur la Montagne" },
+  { label: "Proche Zone Urbaine", value: "Proche Zone Urbaine" },
+  { label: "Proche des Écoles", value: "Proche des Écoles" },
+  { label: "Proche des Centres Commerciaux", value: "Proche des Centres Commerciaux" },
+  { label: "Structure Existante", value: "Structure Existante" },
+  { label: "Terrain Clôturé", value: "Terrain Clôturé" },
+];
+
 
 const process = [
   {
-    title: "Submit Your Property",
-    description: "Fill out our form with details about your land and upload relevant documents.",
+    title: "Soumettez Votre Propriété",
+    description: "Remplissez notre formulaire avec des détails sur votre terrain et téléchargez les documents pertinents.",
   },
   {
-    title: "Property Assessment",
-    description: "Our team will evaluate your property and schedule a site visit if necessary.",
+    title: "Evaluation de la Propriété",
+    description: "Notre équipe évaluera votre propriété et planifiera une visite sur site si nécessaire.",
   },
   {
-    title: "Receive an Offer",
-    description: "We'll present you with a fair market value offer based on our assessment.",
+    title: "Recevez une Offre",
+    description: "Nous vous présenterons une offre de valeur marchande équitable basée sur notre évaluation.",
   },
   {
-    title: "Close the Deal",
-    description: "Once you accept, we'll handle all paperwork and complete the transaction.",
+    title: "Finalisez l'Accord",
+    description: "Une fois que vous accepterez, nous nous chargerons de toutes les formalités et complèterons la transaction.",
   },
 ]
 

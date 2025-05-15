@@ -1,13 +1,19 @@
-import React from "react"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import FadeIn from "@/components/animations/fade-in"
-import StaggerIn from "@/components/animations/stagger-in"
-import ParallaxScroll from "@/components/animations/parallax-scroll"
-import { team } from "@/data/team"
-import { values } from "@/data/values"
+import React from "react";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import FadeIn from "@/components/animations/fade-in";
+import StaggerIn from "@/components/animations/stagger-in";
+import ParallaxScroll from "@/components/animations/parallax-scroll";
+// Assuming 'team' and 'values' data structures have fields that would need translation
+// The content of 'team' and 'values' arrays themselves are not translated here.
+import { team } from "@/data/team";
+import { values } from "@/data/values";
+
+
+
+
 
 export default function AboutPage() {
   return (
@@ -16,7 +22,7 @@ export default function AboutPage() {
         <ParallaxScroll speed={0.2}>
           <Image
             src="https://sjc.microlink.io/Np39p-7dlVvRx3akUxAb4yqZMEzHQkFc0OT79-CqJqNG-TV7dA1ixG8Z8i67sCoB2uOj_qxqIuyVjGDFuiuPbg.jpeg"
-            alt="Bessa Real Estate"
+            alt="sopimem Immobilier" // Translated alt text
             fill
             className="object-cover"
             priority
@@ -27,8 +33,11 @@ export default function AboutPage() {
           <div className="container">
             <FadeIn direction="up">
               <h1 className="text-4xl font-bold text-white mb-4 p-5">À propos de sopimem Real Estate</h1>
+              {/* Translated Heading */}
+              <h1 className="text-4xl font-bold text-white mb-4 p-5">À propos de sopimem Immobilier</h1>
+              {/* Translated Paragraph */}
               <p className="text-xl text-white/90 max-w-2xl p-5">
-                Création d'exceptionnelles propriétés et d'expériences de vie de luxe depuis 2003
+                Construire des propriétés exceptionnelles et créer des expériences de vie de luxe depuis 2003
               </p>
             </FadeIn>
           </div>
@@ -44,6 +53,7 @@ export default function AboutPage() {
                 <p className="text-muted-foreground mb-4">
                   Fondée en 2003, sopimem Real Estate est devenue l'un des principaux développeurs de propriétés de luxe au Liban. Ce qui a commencé comme une petite entreprise familiale est devenu un nom respecté dans l'industrie immobilière, reconnu pour notre engagement envers la qualité, l'innovation et la satisfaction des clients.
                 </p>
+                {/* Translated Paragraph 2 */}
                 <p className="text-muted-foreground mb-6">
                   Au cours des deux dernières décennies, nous avons réussi à livrer plus de 30 projets résidentiels et commerciaux au Liban, créant des maisons et des espaces qui reflètent notre passion pour le design exceptionnel et l'artisanat.
                 </p>
@@ -67,7 +77,7 @@ export default function AboutPage() {
               <div className="relative h-[500px] rounded-lg overflow-hidden">
                 <Image
                   src="main.webp"
-                  alt="Bessa Real Estate Team"
+                  alt="Équipe de sopimem Immobilier" // Translated alt text
                   fill
                   className="object-cover"
                 />
@@ -90,6 +100,11 @@ export default function AboutPage() {
 
           <StaggerIn baseDelay={100} staggerDelay={150}>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {/*
+                Note: value.title and value.description here come from an external 'values' array.
+                These strings need to be translated within your 'values' data structure or using
+                an internationalization (i18n) library in your application.
+              */}
               {values.map((value, index) => (
                 <Card key={index} className="border-none shadow-sm hover:shadow-md transition-all duration-300">
                   <CardContent className="p-6">
@@ -110,21 +125,28 @@ export default function AboutPage() {
         <div className="container">
           <FadeIn>
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4">Our Leadership Team</h2>
+              {/* Translated Heading */}
+              <h2 className="text-3xl font-bold mb-4">Notre Équipe de Direction</h2>
+              {/* Translated Paragraph */}
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Meet the experienced professionals who lead sopimem Real Estate and drive our vision forward.
+                Découvrez les professionnels expérimentés qui dirigent sopimem Immobilier et font avancer notre vision.
               </p>
             </div>
           </FadeIn>
 
           <StaggerIn baseDelay={100} staggerDelay={150}>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+               {/*
+                Note: member.name, member.position, and member.bio here come from an external 'team' array.
+                These strings need to be translated within your 'team' data structure or using
+                an internationalization (i18n) library in your application.
+              */}
               {team.map((member, index) => (
                 <div key={index} className="text-center">
                   <div className="relative h-64 w-64 mx-auto rounded-lg overflow-hidden mb-4">
                     <Image
                       src={member.image || "/placeholder.svg?height=300&width=300"}
-                      alt={member.name}
+                      alt={member.name} // Alt text should ideally be translated too
                       fill
                       className="object-cover"
                     />
@@ -143,111 +165,117 @@ export default function AboutPage() {
         <div className="container">
           <FadeIn>
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4">Our Approach</h2>
+              {/* Translated Heading */}
+              <h2 className="text-3xl font-bold mb-4">Notre Approche</h2>
+           
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Discover how we bring exceptional properties to life, from concept to completion.
+                Découvrez comment nous donnons vie à des propriétés exceptionnelles, du concept à la réalisation.
               </p>
             </div>
           </FadeIn>
 
+          {/* Translated Tab Triggers */}
           <Tabs defaultValue="design" className="w-full max-w-4xl mx-auto">
             <TabsList className="grid w-full grid-cols-4">
-              <TabsTrigger value="design">Design</TabsTrigger>
+              <TabsTrigger value="design">Conception</TabsTrigger>
               <TabsTrigger value="construction">Construction</TabsTrigger>
-              <TabsTrigger value="quality">Quality Control</TabsTrigger>
-              <TabsTrigger value="service">Customer Service</TabsTrigger>
+              <TabsTrigger value="quality">Contrôle Qualité</TabsTrigger>
+              <TabsTrigger value="service">Service Client</TabsTrigger>
             </TabsList>
+            {/* Translated Tab Content - Design */}
             <TabsContent value="design" className="mt-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <div>
-                  <h3 className="text-2xl font-bold mb-4">Innovative Design</h3>
+                  {/* Translated Heading */}
+                  <h3 className="text-2xl font-bold mb-4">Conception Innovante</h3>
+                  {/* Translated Paragraph 1 */}
                   <p className="text-muted-foreground mb-4">
-                    Our design philosophy centers on creating spaces that are both beautiful and functional. We
-                    collaborate with renowned architects and designers who share our vision for exceptional living
-                    environments.
+                    Notre philosophie de conception vise à créer des espaces à la fois beaux et fonctionnels. Nous collaborons avec des architectes et designers renommés qui partagent notre vision d&apos;environnements de vie exceptionnels.
                   </p>
+                  {/* Translated Paragraph 2 */}
                   <p className="text-muted-foreground">
-                    Each project begins with a deep understanding of the location, environment, and the needs of future
-                    residents. This thoughtful approach ensures that our properties not only look stunning but also
-                    enhance the quality of life for those who call them home.
+                    Chaque projet commence par une compréhension approfondie du lieu, de l&apos;environnement et des besoins des futurs résidents. Cette approche réfléchie garantit que nos propriétés sont non seulement magnifiques, mais améliorent également la qualité de vie de ceux qui y résident.
                   </p>
                 </div>
                 <div className="relative h-80 rounded-lg overflow-hidden">
                   <Image
                     src="design.webp"
-                    alt="Design Process"
+                    alt="Processus de Conception" // Translated alt text
                     fill
                     className="object-cover"
                   />
                 </div>
               </div>
             </TabsContent>
+             {/* Translated Tab Content - Construction */}
             <TabsContent value="construction" className="mt-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <div>
-                  <h3 className="text-2xl font-bold mb-4">Superior Construction</h3>
+                  {/* Translated Heading */}
+                  <h3 className="text-2xl font-bold mb-4">Construction Supérieure</h3>
+                  {/* Translated Paragraph 1 */}
                   <p className="text-muted-foreground mb-4">
-                    We partner with the best contractors and use only premium materials to ensure that our buildings
-                    stand the test of time. Our construction processes adhere to international standards and incorporate
-                    the latest building technologies.
+                    Nous nous associons aux meilleurs entrepreneurs et n&apos;utilisons que des matériaux de première qualité pour garantir que nos bâtiments résistent à l&apos;épreuve du temps. Nos processus de construction respectent les normes internationales et intègrent les dernières technologies de construction.
                   </p>
+                  {/* Translated Paragraph 2 */}
                   <p className="text-muted-foreground">
-                    Safety, sustainability, and efficiency are at the forefront of our construction approach. We
-                    carefully monitor each phase of development to ensure that every detail meets our exacting
-                    standards.
+                    La sécurité, la durabilité et l&apos;efficacité sont au premier plan de notre approche de construction. Nous surveillons attentivement chaque phase de développement pour nous assurer que chaque détail répond à nos normes rigoureuses.
                   </p>
                 </div>
                 <div className="relative h-80 rounded-lg overflow-hidden">
                   <Image
                     src="construction.webp"
-                    alt="Construction Process"
+                    alt="Processus de Construction" // Translated alt text
                     fill
                     className="object-cover"
                   />
                 </div>
               </div>
             </TabsContent>
+             {/* Translated Tab Content - Quality Control */}
             <TabsContent value="quality" className="mt-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <div>
-                  <h3 className="text-2xl font-bold mb-4">Rigorous Quality Control</h3>
+                  {/* Translated Heading */}
+                  <h3 className="text-2xl font-bold mb-4">Contrôle Qualité Rigoureux</h3>
+                  {/* Translated Paragraph 1 */}
                   <p className="text-muted-foreground mb-4">
-                    Quality is never compromised at sopimem Real Estate. Our dedicated quality control team conducts
-                    thorough inspections at every stage of construction to ensure that all work meets our high
-                    standards.
+                    La qualité n&apos;est jamais compromise chez sopimem Immobilier. Notre équipe dédiée au contrôle qualité effectue des inspections approfondies à chaque étape de la construction pour s&apos;assurer que tous les travaux respectent nos normes élevées.
                   </p>
+                  {/* Translated Paragraph 2 */}
                   <p className="text-muted-foreground">
-                    From foundation to finishing touches, we pay meticulous attention to every detail. This commitment
-                    to excellence is why our properties maintain their value and appeal for generations.
+                    Des fondations aux touches finales, nous accordons une attention méticuleuse à chaque détail. Cet engagement envers l&apos;excellence explique pourquoi nos propriétés conservent leur valeur et leur attrait pendant des générations.
                   </p>
                 </div>
                 <div className="relative h-80 rounded-lg overflow-hidden">
                   <Image
                     src="constructionundersite.webp"
-                    alt="Quality Control"
+                    alt="Contrôle Qualité" // Translated alt text
                     fill
                     className="object-cover"
                   />
                 </div>
               </div>
             </TabsContent>
+            {/* Translated Tab Content - Customer Service */}
             <TabsContent value="service" className="mt-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <div>
-                  <h3 className="text-2xl font-bold mb-4">Exceptional Customer Service</h3>
+                   {/* Translated Heading */}
+                  <h3 className="text-2xl font-bold mb-4">Service Client Exceptionnel</h3>
+                  {/* Translated Paragraph 1 */}
                   <p className="text-muted-foreground mb-4">
-                    Our relationship with clients doesn't end at the sale. We provide comprehensive after-sales service
-                    to ensure that our residents enjoy a seamless living experience in their new homes.
+                    Notre relation avec les clients ne s&apos;arrête pas à la vente. Nous offrons un service après-vente complet pour garantir que nos résidents bénéficient d&apos;une expérience de vie fluide dans leurs nouvelles maisons.
                   </p>
+                   {/* Translated Paragraph 2 */}
                   <p className="text-muted-foreground">
-                    From maintenance support to community management, our dedicated customer service team is always
-                    available to address any concerns and ensure that our properties continue to exceed expectations.
+                    Du support de maintenance à la gestion communautaire, notre équipe dédiée au service client est toujours disponible pour répondre à toutes les préoccupations et garantir que nos propriétés continuent de dépasser les attentes.
                   </p>
                 </div>
                 <div className="relative h-80 rounded-lg overflow-hidden">
                   <Image
                     src="customerservice.webp"
-                    alt="Customer Service"
+                    alt="Service Client" // Translated alt text
                     fill
                     className="object-cover"
                   />
@@ -261,19 +289,23 @@ export default function AboutPage() {
       <section className="py-16 bg-red-600 text-white">
         <div className="container">
           <div className="text-center">
-            <h2 className="text-3xl font-bold mb-6">Ready to Find Your Dream Home?</h2>
+            {/* Translated Heading */}
+            <h2 className="text-3xl font-bold mb-6">Prêt à trouver la maison de vos rêves ?</h2>
+            {/* Translated Paragraph */}
             <p className="max-w-2xl mx-auto mb-8">
-              Explore our portfolio of exceptional properties or contact our team to discuss your specific requirements.
+              Explorez notre portefeuille de propriétés exceptionnelles ou contactez notre équipe pour discuter de vos besoins spécifiques.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Button className="bg-white text-red-600 hover:bg-gray-100">View Properties</Button>
+              {/* Translated Button Text */}
+              <Button className="bg-white text-red-600 hover:bg-gray-100">Voir les propriétés</Button>
+               {/* Translated Button Text */}
               <Button variant="outline" className="border-white text-white hover:bg-red-700">
-                Contact Us
+                Nous contacter
               </Button>
             </div>
           </div>
         </div>
       </section>
     </div>
-  )
+  );
 }

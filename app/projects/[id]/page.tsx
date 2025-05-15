@@ -205,7 +205,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
     <div className="h-[400px] w-full rounded-lg overflow-hidden border">
       <Map
         filteredProjects={[project]} // pass single project in array
-        selectedProject={project}
+        selectedProject={project.id}
         setSelectedProject={() => {}} // no-op here, not clickable
       />
     </div>

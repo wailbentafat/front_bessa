@@ -1,23 +1,79 @@
+'use client'
+
+import { useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Label } from "@/components/ui/label"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import FadeIn from "@/components/animations/fade-in"
 import StaggerIn from "@/components/animations/stagger-in"
-import RecruitementForm from "@/components/recruitement/RecruitementForm"
 
-export default function RecruitmentPage() {
+type FormData = {
+  nom: string
+  email: string
+  telephone: string
+  poste: string
+  message: string
+}
+
+export default function PageRecrutement() {
+  const [form, setForm] = useState<FormData>({
+    nom: '',
+    email: '',
+    telephone: '',
+    poste: '',
+    message: '',
+  })
+
+  const [loading, setLoading] = useState(false)
+  const [success, setSuccess] = useState(false)
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value })
+  }
+
+  const handleSelect = (value: string) => {
+    setForm({ ...form, poste: value })
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setLoading(true)
+    try {
+      const res = await fetch('/api/recrutement', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+      if (!res.ok) throw new Error('Erreur lors de la soumission.')
+      setSuccess(true)
+      setForm({ nom: '', email: '', telephone: '', poste: '', message: '' })
+    } catch (error) {
+      console.error(error)
+      setSuccess(false)
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return (
     <div className="min-h-screen">
       <section className="relative h-[40vh] w-full overflow-hidden">
+        <img
+          loading='lazy'
+          src="/welcome.jpg"
+          alt="Équipe Bessa"
+          className="absolute inset-0 w-full h-full object-cover"
+          
+        />
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/40" />
         <div className="absolute inset-0 flex items-center">
           <div className="container">
             <FadeIn direction="up">
-              <h1 className="text-4xl font-bold text-white mb-4 p-5">Join Our Team</h1>
+              <h1 className="text-4xl font-bold text-white mb-4 p-5">Rejoignez Notre Équipe</h1>
               <p className="text-xl text-white/90 max-w-2xl p-5">
-                Become part of Bessa Real Estate and help us shape the future of luxury living in Lebanon.
+                Faites partie de Bessa Real Estate et contribuez à façonner l’avenir du luxe immobilier au Liban.
               </p>
             </FadeIn>
           </div>
@@ -30,22 +86,21 @@ export default function RecruitmentPage() {
             <div className="lg:col-span-1">
               <FadeIn>
                 <div className="sticky top-24">
-                  <h2 className="text-2xl font-bold mb-4">Why Join Bessa?</h2>
+                  <h2 className="text-2xl font-bold mb-4">Pourquoi rejoindre Bessa ?</h2>
                   <p className="text-muted-foreground mb-6">
-                    At Bessa Real Estate, we're more than just a company - we're a family of professionals dedicated to
-                    excellence.
+                    Chez Bessa Real Estate, nous sommes une famille de professionnels engagés vers l’excellence.
                   </p>
 
                   <StaggerIn baseDelay={100} staggerDelay={150}>
                     <div className="space-y-6">
-                      {benefits.map((benefit, index) => (
+                      {avantages.map((item, index) => (
                         <div key={index} className="flex gap-4">
-                          <div className="flex-shrink-0 h-12 w-12 rounded-full bg-red-100 flex items-center justify-center text-red-600">
-                            {benefit.icon}
+                          <div className="h-12 w-12 rounded-full bg-red-100 flex items-center justify-center text-red-600">
+                            {item.icon}
                           </div>
                           <div>
-                            <h3 className="font-medium">{benefit.title}</h3>
-                            <p className="text-sm text-muted-foreground">{benefit.description}</p>
+                            <h3 className="font-medium">{item.title}</h3>
+                            <p className="text-sm text-muted-foreground">{item.description}</p>
                           </div>
                         </div>
                       ))}
@@ -58,8 +113,42 @@ export default function RecruitmentPage() {
             <div className="lg:col-span-2">
               <FadeIn delay={200}>
                 <div className="bg-white p-8 rounded-lg shadow-sm border">
-                  <h2 className="text-2xl font-bold mb-6">Apply Now</h2>
-                 < RecruitementForm />
+                  <h2 className="text-2xl font-bold mb-6">Postulez maintenant</h2>
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    <div>
+                      <Label>Nom complet</Label>
+                      <Input name="nom" value={form.nom} onChange={handleChange} required />
+                    </div>
+                    <div>
+                      <Label>Email</Label>
+                      <Input type="email" name="email" value={form.email} onChange={handleChange} required />
+                    </div>
+                    <div>
+                      <Label>Téléphone</Label>
+                      <Input name="telephone" value={form.telephone} onChange={handleChange} required />
+                    </div>
+                    <div>
+                      <Label>Poste souhaité</Label>
+                      <Select onValueChange={handleSelect} value={form.poste}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Choisissez un poste" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="agent">Agent Immobilier</SelectItem>
+                          <SelectItem value="marketing">Marketing</SelectItem>
+                          <SelectItem value="support">Support Client</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div>
+                      <Label>Message</Label>
+                      <Textarea name="message" value={form.message} onChange={handleChange} />
+                    </div>
+                    <Button type="submit" disabled={loading}>
+                      {loading ? 'Envoi en cours...' : 'Envoyer la candidature'}
+                    </Button>
+                    {success && <p className="text-green-600 mt-2">Votre demande a été envoyée avec succès.</p>}
+                  </form>
                 </div>
               </FadeIn>
             </div>
@@ -70,86 +159,25 @@ export default function RecruitmentPage() {
   )
 }
 
-const benefits = [
+const avantages = [
   {
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth={1.5}
-        stroke="currentColor"
-        className="w-6 h-6"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"
-        />
-      </svg>
-    ),
-    title: "Professional Growth",
-    description: "Continuous learning opportunities and career advancement paths for all team members.",
+    icon: <span>📈</span>,
+    title: "Évolution professionnelle",
+    description: "Des opportunités continues d’apprentissage et d’avancement.",
   },
   {
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth={1.5}
-        stroke="currentColor"
-        className="w-6 h-6"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"
-        />
-      </svg>
-    ),
-    title: "Collaborative Environment",
-    description: "Work with talented professionals in a supportive and innovative team setting.",
+    icon: <span>🤝</span>,
+    title: "Environnement collaboratif",
+    description: "Travaillez avec des professionnels talentueux dans une ambiance innovante.",
   },
   {
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth={1.5}
-        stroke="currentColor"
-        className="w-6 h-6"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-        />
-      </svg>
-    ),
-    title: "Competitive Compensation",
-    description: "Attractive salary packages, bonuses, and incentives based on performance.",
+    icon: <span>💰</span>,
+    title: "Rémunération compétitive",
+    description: "Salaire attractif, primes et bonus selon vos performances.",
   },
   {
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth={1.5}
-        stroke="currentColor"
-        className="w-6 h-6"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M20.893 13.393l-1.135-1.135a2.252 2.252 0 01-.421-.585l-1.08-2.16a.414.414 0 00-.663-.107.827.827 0 01-.812.21l-1.273-.363a.89.89 0 00-.738 1.595l.587.39c.59.395.674 1.23.172 1.732l-.2.2c-.212.212-.33.498-.33.796v.41c0 .409-.11.809-.32 1.158l-1.315 2.191a2.11 2.11 0 01-1.81 1.025 1.055 1.055 0 01-1.055-1.055v-1.172c0-.92-.56-1.747-1.414-2.089l-.655-.261a2.25 2.25 0 01-1.383-2.46l.007-.042a2.25 2.25 0 01.29-.787l.09-.15a2.25 2.25 0 012.37-1.048l1.178.236a1.125 1.125 0 001.302-.795l.208-.73a1.125 1.125 0 00-.578-1.315l-.665-.332-.091.091a2.25 2.25 0 01-1.591.659h-.18c-.249 0-.487.1-.662.274a.931.931 0 01-1.458-1.137l1.411-2.353a2.25 2.25 0 00.286-.76m11.928 9.869A9 9 0 008.965 3.525m11.928 9.868A9 9 0 118.965 3.525"
-        />
-      </svg>
-    ),
-    title: "International Exposure",
-    description: "Opportunities to work on global projects and expand your professional network.",
+    icon: <span>🌍</span>,
+    title: "Exposition internationale",
+    description: "Participez à des projets globaux et élargissez votre réseau.",
   },
 ]
-
