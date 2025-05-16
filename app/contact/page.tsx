@@ -7,14 +7,7 @@ import FadeIn from "@/components/animations/fade-in";
 import StaggerIn from "@/components/animations/stagger-in";
 import ContactForm from "@/components/contact/contactform"; // Assuming this component handles the form itself
 
-// Import a WhatsApp icon. Lucide-react might not have a direct WhatsApp icon due to branding.
-// You might need to add a custom SVG for WhatsApp or use a library like react-icons
-// For this example, let's assume you have a local SVG component for WhatsApp or will add it.
-// If you use react-icons, you would install it and import like: import { FaWhatsapp } from 'react-icons/fa';
-// For now, we'll use a placeholder or assume a custom icon component exists.
-// Let's add a placeholder for the WhatsApp icon SVG path if needed, or a comment to add it.
 
-// Placeholder for WhatsApp SVG path (if not using a library like react-icons)
 const whatsappSvgPath = "M16.6 14c-.2-.1-1.5-.7-1.7-.8c-.2-.1-.4-.1-.6.1c-.2.2-.6.8-.8 1c-.1.2-.3.2-.5.1c-.7-.3-1.4-.7-2-1.2c-.5-.5-1-1.1-1.4-1.7c-.1-.2 0-.4.1-.5c.1-.1.2-.3.4-.4c.1-.1.2-.3.2-.4c.1-.1.1-.3 0-.4c-.1-.1-.6-1.3-.8- WhatsApp Icons examples. See what this icon looks like in some mockup designs. Related icons in Unicons. Resources. Search. Other products. PNG Logo."; // Replace with actual SVG path data
 
 // Assuming a simple custom component for WhatsApp icon if not using a library
@@ -44,7 +37,7 @@ export default function ContactPage() {
     <div className="min-h-screen">
       <section className="relative h-[40vh] w-full overflow-hidden">
         {/* Consider adding a background image here if desired */}
-        {/* <img src="/path/to/your/image.jpg" alt="Contact Us Background" className="absolute inset-0 w-full h-full object-cover" /> */}
+        <img src="/nous.jpg" alt="Contact Us Background" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/40 " />
         <div className="absolute inset-0 flex items-center">
           <div className="container">

@@ -225,7 +225,7 @@ export default function SellYourLandPage() {
         <div className="absolute inset-0 flex items-center">
           <div className="container">
             <FadeIn direction="up">
-              <h1 className="text-4xl font-bold text-white mb-4 p-5">Vendez Votre Terrain à Bessa</h1>
+              <h1 className="text-4xl font-bold text-white mb-4 p-5">Vendez Votre Terrain à sopimem</h1>
               <p className="text-xl text-white/90 max-w-2xl p-5">
                 Nous sommes intéressés par l'acquisition de terrains de qualité pour nos futurs développements. Soumettez 
                 les détails de votre propriété et nous vous contacterons avec une offre.
@@ -241,9 +241,9 @@ export default function SellYourLandPage() {
             <div className="lg:col-span-1">
               <FadeIn>
                 <div className="sticky top-24">
-                  <h2 className="text-2xl font-bold mb-4">Pourquoi Vendre à Bessa ?</h2>
+                  <h2 className="text-2xl font-bold mb-4">Pourquoi Vendre à sopimem ?</h2>
                   <p className="text-muted-foreground mb-6">
-                    La vente de votre terrain à Bessa Immobilier offre de nombreux avantages et une expérience sans tracas.
+                    La vente de votre terrain à sopimem Immobilier offre de nombreux avantages et une expérience sans tracas.
                   </p>
 
                   <StaggerIn baseDelay={100} staggerDelay={150}>

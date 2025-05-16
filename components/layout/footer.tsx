@@ -11,12 +11,12 @@ export default function Footer() {
             <div className="mb-4">
               <Link href="/" className="flex items-center gap-2">
                 <div className="bg-red-600 p-2 rounded">
-                  <span className="font-bold text-white">BESSA</span>
+                  <span className="font-bold text-white">SOPIMEM</span>
                 </div>
               </Link>
             </div>
             <p className="text-slate-400 mb-4">
-              Bessa Real Estate est un développeur immobilier de luxe de premier plan au Liban, créant des espaces de vie exceptionnels depuis 2003.
+              SOPIMEM Real Estate est un développeur immobilier de luxe de premier plan au Liban, créant des espaces de vie exceptionnels depuis 2003.
             </p>
             <div className="flex gap-4">
               <a href="#" className="text-slate-400 hover:text-white transition-colors">
@@ -155,7 +155,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-slate-800 mt-8 pt-8 text-center text-slate-400">
-          <p>&copy; {new Date().getFullYear()} Bessa Real Estate. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} SOPIMEM Real Estate. All rights reserved.</p>
         </div>
       </div>
     </footer>

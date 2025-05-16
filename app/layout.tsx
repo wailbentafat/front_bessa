@@ -11,7 +11,7 @@ import ReactQueryProvider from "@/lib/react-query-provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Bessa Real Estate",
+  title: "sopimem Real Estate",
   description: "Luxury real estate properties in Lebanon",
   generator: "v0.dev",
 };

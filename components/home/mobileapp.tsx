@@ -11,14 +11,14 @@ export default function MobileApp() {
                     <FadeIn direction="right" delay={200}>
                       <div className="flex justify-center">
                         <div className="relative h-[500px] w-[250px] transition-transform hover:scale-105 duration-700">
-                          <Image src="mobile.jpeg" alt="Bessa Mobile App" fill className="object-cover rounded-3xl shadow-xl" />
+                          <Image src="mobile.jpeg" alt="sopimem Mobile App" fill className="object-cover rounded-3xl shadow-xl" />
                         </div>
                       </div>
                     </FadeIn>
         
                     <FadeIn direction="left" delay={400}>
                       <div>
-                        <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-6">Buy Bessa App</h2>
+                        <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-6">Buy sopimem App</h2>
                         <p className="text-muted-foreground mb-8">
                           Experience the convenience of browsing our properties, receiving real-time updates, and connecting
                           with our team directly from your smartphone.

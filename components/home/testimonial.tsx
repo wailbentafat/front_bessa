@@ -40,7 +40,7 @@ export default function Testimonial() {
           <div className="flex flex-col items-center text-center mb-12">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">What Our Clients Say</h2>
             <p className="mt-4 max-w-3xl text-muted-foreground">
-              Hear from our satisfied homeowners about their experience with Bessa
+              Hear from our satisfied homeowners about their experience with sopimem
             </p>
           </div>
         </FadeIn>
@@ -107,21 +107,21 @@ const testimonials = [
     property: "The Grand Residence",
     avatar: "/placeholder.svg?height=100&width=100",
     quote:
-      "Buying our dream home with Bessa was an exceptional experience. The team was professional, attentive, and made the entire process seamless.",
+      "Buying our dream home with sopimme was an exceptional experience. The team was professional, attentive, and made the entire process seamless.",
   },
   {
     name: "David L.",
     property: "Azure Heights",
     avatar: "/placeholder.svg?height=100&width=100",
     quote:
-      "The quality of construction and attention to detail in our apartment exceeded our expectations. Bessa delivers on their promise of luxury living.",
+      "The quality of construction and attention to detail in our apartment exceeded our expectations. sopimem delivers on their promise of luxury living.",
   },
   {
     name: "Amira K.",
     property: "Emerald Valley",
     avatar: "/placeholder.svg?height=100&width=100",
     quote:
-      "From the initial consultation to receiving our keys, Bessa provided outstanding service. Our villa is everything we dreamed of and more.",
+      "From the initial consultation to receiving our keys, sopimem provided outstanding service. Our villa is everything we dreamed of and more.",
   },
 ]
 

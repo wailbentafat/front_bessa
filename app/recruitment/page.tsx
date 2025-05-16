@@ -63,7 +63,7 @@ export default function PageRecrutement() {
         <img
           loading='lazy'
           src="/welcome.jpg"
-          alt="Équipe Bessa"
+          alt="Équipe sopimem"
           className="absolute inset-0 w-full h-full object-cover"
           
         />
@@ -73,7 +73,7 @@ export default function PageRecrutement() {
             <FadeIn direction="up">
               <h1 className="text-4xl font-bold text-white mb-4 p-5">Rejoignez Notre Équipe</h1>
               <p className="text-xl text-white/90 max-w-2xl p-5">
-                Faites partie de Bessa Real Estate et contribuez à façonner l’avenir du luxe immobilier au Liban.
+                Faites partie de sopimem Real Estate et contribuez à façonner l’avenir du luxe immobilier au Liban.
               </p>
             </FadeIn>
           </div>
@@ -86,9 +86,9 @@ export default function PageRecrutement() {
             <div className="lg:col-span-1">
               <FadeIn>
                 <div className="sticky top-24">
-                  <h2 className="text-2xl font-bold mb-4">Pourquoi rejoindre Bessa ?</h2>
+                  <h2 className="text-2xl font-bold mb-4">Pourquoi rejoindre sopimem ?</h2>
                   <p className="text-muted-foreground mb-6">
-                    Chez Bessa Real Estate, nous sommes une famille de professionnels engagés vers l’excellence.
+                    Chez sopimem Real Estate, nous sommes une famille de professionnels engagés vers l’excellence.
                   </p>
 
                   <StaggerIn baseDelay={100} staggerDelay={150}>

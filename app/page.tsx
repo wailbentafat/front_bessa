@@ -207,7 +207,7 @@ export default function Home() {
                     </div>
                     <div>
                       <h3 className="font-medium">Email</h3>
-                      <p className="text-muted-foreground">info@bessarealestate.com</p>
+                      <p className="text-muted-foreground">info@sopimemrealestate.com</p>
                     </div>
                   </div>
                 </div>

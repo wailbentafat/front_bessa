@@ -53,7 +53,7 @@ export default function Header() {
 
         <nav className="hidden md:flex items-center gap-6">
           <NavLink href="/" isActive={pathname === "/"}>
-            <span className="font-bold">Home</span>
+            <span className="font-bold">Accueil</span>
           </NavLink>
 
           <DropdownMenu>
@@ -62,18 +62,18 @@ export default function Header() {
                 variant="ghost"
                 className="flex items-center gap-1 text-sm font-bold transition-colors hover:text-red-600"
               >
-                Projects <ChevronDown className="h-4 w-4" />
+                Projets <ChevronDown className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-40">
               <DropdownMenuItem asChild>
-                <Link href="/projects" className="font-bold">All Projects</Link>
+                <Link href="/projects" className="font-bold">Tous les Projets</Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link href="/projects?status=Ready to Move" className="font-bold">Ready Properties</Link>
+                <Link href="/projects?status=Ready to Move" className="font-bold">Propriétés Prêtes</Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link href="/projects?status=Under Construction" className="font-bold">Under Construction</Link>
+                <Link href="/projects?status=Under Construction" className="font-bold">En Construction</Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
                 <Link href="/projects?status=Coming Soon" className="font-bold">Coming Soon</Link>
@@ -85,10 +85,10 @@ export default function Header() {
           <span className="font-bold">Map</span>
           </NavLink>
           <NavLink href="/recruitment" isActive={pathname === "/recruitment"}>
-            <span className="font-bold">Careers</span>
+            <span className="font-bold">Recruitment</span>
           </NavLink>
           <NavLink href="/sell-your-land" isActive={pathname === "/sell-your-land"} >
-            <span className="font-bold">Sell Your Land</span>
+            <span className="font-bold">vendre votre terrain</span>
           </NavLink>
 
           <DropdownMenu>
@@ -102,13 +102,13 @@ export default function Header() {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-40">
               <DropdownMenuItem asChild>
-                <Link href="/about" className="font-bold">About Us</Link>
+                <Link href="/about" className="font-bold">À propos de nous</Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
                 <Link href="/contact" className="font-bold">Contact</Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link href="/#app" className="font-bold">Buy Bessa App</Link>
+                <Link href="/#app" className="font-bold">Acheter l'application SOPIMEM</Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -140,10 +140,10 @@ export default function Header() {
                 pathname === "/" && "bg-red-50 text-red-600",
               )}
             >
-              Home
+              Accueil
             </Link>
             <div className="border-t my-1"></div>
-            <div className="pl-2 text-sm font-bold text-muted-foreground">Projects</div>
+            <div className="pl-2 text-sm font-bold text-muted-foreground">Projets</div>
             <Link
               href="/projects"
               className={cn(
@@ -151,25 +151,25 @@ export default function Header() {
                 pathname === "/projects" && "bg-red-50 text-red-600",
               )}
             >
-              All Projects
+              Tous les Projets
             </Link>
             <Link
               href="/projects?status=Ready to Move"
               className="text-sm font-bold transition-colors hover:text-red-600 p-2 rounded-md pl-4"
             >
-              Ready Properties
+              Propriétés Prêtes
             </Link>
             <Link
               href="/projects?status=Under Construction"
               className="text-sm font-bold transition-colors hover:text-red-600 p-2 rounded-md pl-4"
             >
-              Under Construction
+              En Construction
             </Link>
             <Link
               href="/projects?status=Coming Soon"
               className="text-sm font-bold transition-colors hover:text-red-600 p-2 rounded-md pl-4"
             >
-              Coming Soon
+              À venir
             </Link>
             <div className="border-t my-1"></div>
             <Link
@@ -179,7 +179,7 @@ export default function Header() {
                 pathname === "/map" && "bg-red-50 text-red-600",
               )}
             >
-              Map
+              Carte
             </Link>
             <Link
               href="/recruitment"
@@ -188,7 +188,7 @@ export default function Header() {
                 pathname === "/recruitment" && "bg-red-50 text-red-600",
               )}
             >
-              Careers
+              Carrières
             </Link>
             <Link
               href="/sell-your-land"
@@ -197,7 +197,7 @@ export default function Header() {
                 pathname === "/sell-your-land" && "bg-red-50 text-red-600",
               )}
             >
-              Sell Your Land
+              Vendre votre terrain
             </Link>
             <Link
               href="/about"
@@ -206,7 +206,7 @@ export default function Header() {
                 pathname === "/about" && "bg-red-50 text-red-600",
               )}
             >
-              About Us
+              À propos de nous
             </Link>
             <Link
               href="/contact"
@@ -218,7 +218,7 @@ export default function Header() {
               Contact
             </Link>
             <Link href="/#app" className="text-sm font-bold transition-colors hover:text-red-600 p-2 rounded-md">
-              Buy Bessa App
+              Acheter l'application Bessa
             </Link>
           </nav>
         </div>
