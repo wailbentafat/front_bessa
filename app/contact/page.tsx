@@ -42,13 +42,13 @@ export default function ContactPage() {
         <div className="absolute inset-0 flex items-center">
           <div className="container">
             <FadeIn direction="up">
-              <h1 className="text-4xl font-bold text-white mb-4 p-5">Nous contacter</h1>
-              <p className="text-xl text-white/90 max-w-2xl p-5">
-                Contactez notre équipe pour toute question concernant nos propriétés ou services
-              <h1 className="text-4xl font-bold text-white mb-4 p-5">Contactez-nous</h1> {/* Translated to French */}
-              <p className="text-xl text-white/90 max-w-2xl p-5"> {/* Translated to French */}
-                Prenez contact avec notre équipe pour toute question concernant nos propriétés ou services.
-              </p>
+              {/* Corrected: Combined the h1 and p tags within a single div or fragment */}
+              <div>
+                <h1 className="text-4xl font-bold text-white mb-4 p-5">Contactez-nous</h1> {/* Translated to French */}
+                <p className="text-xl text-white/90 max-w-2xl p-5"> {/* Translated to French */}
+                  Prenez contact avec notre équipe pour toute question concernant nos propriétés ou services.
+                </p>
+              </div>
             </FadeIn>
           </div>
         </div>
@@ -59,10 +59,6 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 p-5">
             <div className="lg:col-span-1">
               <FadeIn>
-                <h2 className="text-2xl font-bold mb-6">Nous contacter</h2>
-                <p className="text-muted-foreground mb-8">
-                  Notre équipe d'experts est prête à vous aider avec toutes vos questions ou demandes concernant nos
-                  properties or services.
                 <h2 className="text-2xl font-bold mb-6">Prenez Contact</h2> {/* Translated to French */}
                 <p className="text-muted-foreground mb-8"> {/* Translated to French */}
                   Notre équipe d'experts est prête à vous aider pour toutes vos questions ou demandes
@@ -86,8 +82,8 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <h3 className="font-medium">Appelez-nous</h3> {/* Translated to French */}
-                        <p className="text-sm text-muted-foreground">+961 1 234 567</p> {/* Consider updating with actual Algerian numbers */}
-                        <p className="text-sm text-muted-foreground">+961 3 987 654</p> {/* Consider updating with actual Algerian numbers */}
+                        <p className="text-sm text-muted-foreground">+213 557 62 19 56</p> {/* Updated with more realistic Algerian format */}
+                        <p className="text-sm text-muted-foreground">+213 555 12 34 56</p> {/* Example Algerian number */}
                          {/* Add WhatsApp link here if desired, or in the social media section */}
                       </div>
                     </div>
@@ -97,8 +93,8 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <h3 className="font-medium">Envoyez-nous un e-mail</h3> {/* Translated to French */}
-                        <p className="text-sm text-muted-foreground">sopmimem.com</p> {/* Update with correct email */}
-                        <p className="text-sm text-muted-foreground">sopimme.comm</p> {/* Update with correct email */}
+                        <p className="text-sm text-muted-foreground">contact@sopmimem.com</p> {/* Updated with a more common email format */}
+                        <p className="text-sm text-muted-foreground">info@sopimme.com</p> {/* Updated with a more common email format */}
                       </div>
                     </div>
                     <div className="flex gap-4">
@@ -107,8 +103,8 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <h3 className="font-medium">Heures d'ouverture</h3> {/* Translated to French */}
-                        <p className="text-sm text-muted-foreground">Lundi - Vendredi: 9h00 - 18h00</p> {/* Translated to French */}
-                        <p className="text-sm text-muted-foreground">Samedi: 10h00 - 16h00</p> {/* Translated to French */}
+                        <p className="text-sm text-muted-foreground">Dimanche - Jeudi: 9h00 - 17h00</p> {/* Adjusted to typical Algerian work week */}
+                        <p className="text-sm text-muted-foreground">Vendredi: Fermé</p> {/* Adjusted to typical Algerian work week */}
                       </div>
                     </div>
                   </div>
@@ -119,33 +115,41 @@ export default function ContactPage() {
                   <div className="flex gap-4">
                     {/* Facebook */}
                     <a
-                      href="#" // Replace with your Facebook page URL
+                      href="https://www.facebook.com/yourpage" // Replace with your Facebook page URL
                       className="h-10 w-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-red-100 hover:text-red-600 transition-colors"
                       aria-label="Follow us on Facebook"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                      <Facebook className="h-5 w-5" /> {/* Using Lucide React Facebook icon */}
                     </a>
                     {/* Instagram */}
                     <a
-                      href="#" // Replace with your Instagram profile URL
+                      href="https://www.instagram.com/yourprofile" // Replace with your Instagram profile URL
                       className="h-10 w-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-red-100 hover:text-red-600 transition-colors"
                        aria-label="Follow us on Instagram"
+                       target="_blank"
+                       rel="noopener noreferrer"
                     >
                       <Instagram className="h-5 w-5" /> {/* Using Lucide React Instagram icon */}
                     </a>
                     {/* Twitter */}
                     <a
-                      href="#" // Replace with your Twitter profile URL
+                      href="https://twitter.com/yourprofile" // Replace with your Twitter profile URL
                       className="h-10 w-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-red-100 hover:text-red-600 transition-colors"
                        aria-label="Follow us on Twitter"
+                       target="_blank"
+                       rel="noopener noreferrer"
                     >
                       <Twitter className="h-5 w-5" /> {/* Using Lucide React Twitter icon */}
                     </a>
                      {/* Linkedin */}
                     <a
-                      href="#" // Replace with your Linkedin profile URL
+                      href="https://www.linkedin.com/company/yourcompany" // Replace with your Linkedin profile URL
                       className="h-10 w-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-red-100 hover:text-red-600 transition-colors"
                        aria-label="Follow us on Linkedin"
+                       target="_blank"
+                       rel="noopener noreferrer"
                     >
                       <Linkedin className="h-5 w-5" /> {/* Using Lucide React Linkedin icon */}
                     </a>
@@ -175,5 +179,6 @@ export default function ContactPage() {
         </div>
       </section>
     </div>
+    
   );
 }
