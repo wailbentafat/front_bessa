@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Image from "next/image"
 import { ChevronRight, Info, MapPin, Maximize, Home } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
@@ -16,7 +16,10 @@ import {
 } from "@/components/ui/dialog"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
-interface Residence {
+// Import the Residence interface
+// types/residence.ts (or data/residences.ts)
+
+export interface Residence {
   id: string
   name: string
   location: string
@@ -34,32 +37,33 @@ interface Residence {
     bathrooms: number
     amenities: string[]
   }
+  galleryImages: string[] // Added for more comprehensive gallery
 }
 
-const residences: Residence[] = [
+export const residencesData: Residence[] = [
   {
     id: "residence-1",
     name: "Résidence Les Massyles",
     location: "Chéraga, Grands Vents",
-    mainImage: "/placeholder.svg?height=600&width=800",
-    hoverImage: "/placeholder.svg?height=600&width=800&text=Hover+Image",
+    mainImage: "/images/massyles-main.jpg",
+    hoverImage: "/images/massyles-hover.jpg",
     description:
       "Une résidence de prestige située dans le quartier des Grands Vents à Chéraga. Cette résidence facilement accessible depuis l'autoroute se caractérise par son architecture moderne et raffinée.",
     features: [
       {
         title: "Architecture Moderne",
         description: "Façade contemporaine avec des finitions de haute qualité",
-        image: "/placeholder.svg?height=400&width=600&text=Architecture",
+        image: "/images/massyles-feature-arch.jpg",
       },
       {
         title: "Espaces Verts",
         description: "Jardins paysagers et espaces de détente",
-        image: "/placeholder.svg?height=400&width=600&text=Espaces+Verts",
+        image: "/images/massyles-feature-green.jpg",
       },
       {
         title: "Sécurité 24/7",
         description: "Système de surveillance et personnel de sécurité",
-        image: "/placeholder.svg?height=400&width=600&text=Sécurité",
+        image: "/images/massyles-feature-security.jpg",
       },
     ],
     details: {
@@ -68,62 +72,72 @@ const residences: Residence[] = [
       bathrooms: 2,
       amenities: ["Piscine", "Salle de sport", "Parking souterrain", "Aire de jeux"],
     },
+    galleryImages: [
+      "/images/massyles-gallery-1.jpg",
+      "/images/massyles-gallery-2.jpg",
+      "/images/massyles-gallery-3.jpg",
+    ],
   },
   {
     id: "residence-2",
     name: "Résidence La Pinède",
     location: "Hydra, Alger",
-    mainImage: "/placeholder.svg?height=600&width=800&text=La+Pinède",
-    hoverImage: "/placeholder.svg?height=600&width=800&text=La+Pinède+Hover",
+    mainImage: "/images/pinede-main.jpg",
+    hoverImage: "/images/pinede-hover.jpg",
     description:
       "Un havre de paix au cœur de la ville, offrant des appartements spacieux avec vue panoramique sur la baie d'Alger.",
     features: [
       {
         title: "Vue Panoramique",
         description: "Vue imprenable sur la baie d'Alger",
-        image: "/placeholder.svg?height=400&width=600&text=Vue+Panoramique",
+        image: "/images/pinede-feature-view.jpg",
       },
       {
         title: "Matériaux Premium",
         description: "Finitions haut de gamme et matériaux de qualité",
-        image: "/placeholder.svg?height=400&width=600&text=Matériaux",
+        image: "/images/pinede-feature-materials.jpg",
       },
       {
         title: "Emplacement Stratégique",
         description: "Proche des commerces et services essentiels",
-        image: "/placeholder.svg?height=400&width=600&text=Emplacement",
+        image: "/images/pinede-feature-location.jpg",
       },
     ],
     details: {
       size: "100-200m²",
       bedrooms: 4,
-      bathrooms: 3,
+    bathrooms: 3,
       amenities: ["Terrasse privée", "Ascenseur", "Système domotique", "Conciergerie"],
     },
+    galleryImages: [
+      "/images/pinede-gallery-1.jpg",
+      "/images/pinede-gallery-2.jpg",
+      "/images/pinede-gallery-3.jpg",
+    ],
   },
   {
     id: "residence-3",
     name: "Résidence Avena",
     location: "Oran, Front de mer",
-    mainImage: "/placeholder.svg?height=600&width=800&text=Avena",
-    hoverImage: "/placeholder.svg?height=600&width=800&text=Avena+Hover",
+    mainImage: "/images/avena-main.jpg",
+    hoverImage: "/images/avena-hover.jpg",
     description:
       "Une résidence de standing sur le front de mer d'Oran, alliant luxe et confort dans un cadre exceptionnel.",
     features: [
       {
         title: "Front de Mer",
         description: "Accès direct à la plage et vue sur la Méditerranée",
-        image: "/placeholder.svg?height=400&width=600&text=Front+de+Mer",
+        image: "/images/avena-feature-sea.jpg",
       },
       {
         title: "Design Intérieur",
         description: "Intérieurs conçus par des designers renommés",
-        image: "/placeholder.svg?height=400&width=600&text=Design",
+        image: "/images/avena-feature-design.jpg",
       },
       {
         title: "Efficacité Énergétique",
         description: "Bâtiment à faible consommation d'énergie",
-        image: "/placeholder.svg?height=400&width=600&text=Efficacité",
+        image: "/images/avena-feature-energy.jpg",
       },
     ],
     details: {
@@ -132,30 +146,35 @@ const residences: Residence[] = [
       bathrooms: 3,
       amenities: ["Spa", "Restaurant", "Service de voiturier", "Plage privée"],
     },
+    galleryImages: [
+      "/images/avena-gallery-1.jpg",
+      "/images/avena-gallery-2.jpg",
+      "/images/avena-gallery-3.jpg",
+    ],
   },
   {
     id: "residence-4",
     name: "Résidence Midelt",
     location: "Constantine, Centre-ville",
-    mainImage: "/placeholder.svg?height=600&width=800&text=Midelt",
-    hoverImage: "/placeholder.svg?height=600&width=800&text=Midelt+Hover",
+    mainImage: "/images/midelt-main.jpg",
+    hoverImage: "/images/midelt-hover.jpg",
     description:
       "Au cœur de Constantine, cette résidence allie charme traditionnel et confort moderne pour une expérience de vie unique.",
     features: [
       {
         title: "Héritage Architectural",
         description: "Façade inspirée de l'architecture traditionnelle",
-        image: "/placeholder.svg?height=400&width=600&text=Héritage",
+        image: "/images/midelt-feature-heritage.jpg",
       },
       {
         title: "Espaces Communs",
         description: "Salons communautaires et espaces de coworking",
-        image: "/placeholder.svg?height=400&width=600&text=Espaces+Communs",
+        image: "/images/midelt-feature-common.jpg",
       },
       {
         title: "Technologie Smart Home",
         description: "Appartements équipés de technologies intelligentes",
-        image: "/placeholder.svg?height=400&width=600&text=Smart+Home",
+        image: "/images/midelt-feature-smart.jpg",
       },
     ],
     details: {
@@ -164,12 +183,63 @@ const residences: Residence[] = [
       bathrooms: 2,
       amenities: ["Bibliothèque", "Jardin sur le toit", "Salle de réunion", "Sécurité biométrique"],
     },
+    galleryImages: [
+      "/images/midelt-gallery-1.jpg",
+      "/images/midelt-gallery-2.jpg",
+      "/images/midelt-gallery-3.jpg",
+    ],
   },
 ]
-
 export default function WhyChooseUs() {
+  const [residences, setResidences] = useState<Residence[]>([])
   const [selectedResidence, setSelectedResidence] = useState<Residence | null>(null)
   const [hoveredResidence, setHoveredResidence] = useState<string | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    const fetchResidences = async () => {
+      try {
+        setLoading(true)
+        const response = await fetch("endponit") 
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`)
+        }
+        const data: Residence[] = await response.json()
+        setResidences(data)
+        if (data.length > 0) {
+          setSelectedResidence(data[0]) 
+        }
+      } catch (e: any) {
+        setError(e.message)
+        console.error("Failed to fetch residences:", e)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchResidences()
+  }, [])
+
+  if (loading) {
+    return (
+      <section className="py-16 md:py-24 bg-white">
+        <div className="container px-4 md:px-6 text-center">
+          <p>Chargement des résidences...</p>
+        </div>
+      </section>
+    )
+  }
+
+  if (error) {
+    return (
+      <section className="py-16 md:py-24 bg-white">
+        <div className="container px-4 md:px-6 text-center">
+          <p className="text-red-500">Erreur lors du chargement des résidences: {error}</p>
+        </div>
+      </section>
+    )
+  }
 
   return (
     <section className="py-16 md:py-24 bg-white">
@@ -398,6 +468,10 @@ export default function WhyChooseUs() {
                                       src: selectedResidence.hoverImage,
                                       alt: `${selectedResidence.name} - Vue alternative`,
                                     },
+                                    ...(selectedResidence.galleryImages || []).map((imgSrc) => ({
+                                      src: imgSrc,
+                                      alt: `${selectedResidence.name} - Galerie`,
+                                    })),
                                     ...selectedResidence.features.map((feature) => ({
                                       src: feature.image,
                                       alt: feature.title,

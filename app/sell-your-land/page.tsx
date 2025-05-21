@@ -118,7 +118,6 @@ export default function SellYourLandPage() {
     }
   }
   
-  // Form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
