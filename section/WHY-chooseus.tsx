@@ -190,6 +190,9 @@ export const residencesData: Residence[] = [
     ],
   },
 ]
+
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000"
+
 export default function WhyChooseUs() {
   const [residences, setResidences] = useState<Residence[]>([])
   const [selectedResidence, setSelectedResidence] = useState<Residence | null>(null)
@@ -201,18 +204,63 @@ export default function WhyChooseUs() {
     const fetchResidences = async () => {
       try {
         setLoading(true)
-        const response = await fetch("endponit") 
+        const response = await fetch(`${API_BASE_URL}/projects/projects/`, {
+          headers: {
+            'Accept': 'application/json',
+            'Origin': typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000'
+          },
+        })
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`)
         }
-        const data: Residence[] = await response.json()
-        setResidences(data)
-        if (data.length > 0) {
-          setSelectedResidence(data[0]) 
+        const apiData = await response.json()
+        
+        // Transform API data to match Residence interface
+        const transformedData: Residence[] = apiData.map((item: any) => ({
+          id: item.id,
+          name: item.name,
+          location: item.location,
+          mainImage: item.image,
+          hoverImage: item.gallery?.[0] || item.image,
+          description: item.description,
+          features: [
+            {
+              title: "Caractéristiques",
+              description: item.features?.join(", ") || "",
+              image: item.gallery?.[0] || item.image,
+            },
+            {
+              title: "Équipements",
+              description: item.amenities?.join(", ") || "",
+              image: item.gallery?.[1] || item.image,
+            },
+            {
+              title: "Localisation",
+              description: item.nearby_amenities?.join(", ") || "",
+              image: item.gallery?.[2] || item.image,
+            },
+          ],
+          details: {
+            size: `${item.size}m²`,
+            bedrooms: item.bedrooms,
+            bathrooms: item.bathrooms,
+            amenities: item.amenities || [],
+          },
+          galleryImages: item.gallery || [item.image],
+        }))
+
+        console.log("Transformed data:", transformedData) // Debug log
+        setResidences(transformedData)
+        if (transformedData.length > 0) {
+          setSelectedResidence(transformedData[0])
         }
       } catch (e: any) {
-        setError(e.message)
         console.error("Failed to fetch residences:", e)
+        if (e.message.includes('CORS') || e.message.includes('NetworkError')) {
+          setError("Impossible de se connecter au serveur. Veuillez vérifier que le serveur backend est en cours d'exécution.")
+        } else {
+          setError(e.message)
+        }
       } finally {
         setLoading(false)
       }

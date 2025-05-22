@@ -299,7 +299,7 @@ export default function AboutPage() {
               {/* Translated Button Text */}
               <Button className="bg-white text-red-600 hover:bg-gray-100">Voir les propriétés</Button>
                {/* Translated Button Text */}
-              <Button variant="outline" className="border-white text-white hover:bg-red-700">
+              <Button variant="outline" className="bg-white text-red-600 hover:bg-red-600 hover:text-white border-none">
                 Nous contacter
               </Button>
             </div>

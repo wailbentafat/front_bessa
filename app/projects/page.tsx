@@ -25,7 +25,10 @@ export default function ProjectsPage() {
   const locations = Array.from(new Set(projects.map((p) => p.location.split(",")[0].trim())))
 
  
-  const propertyTypes = Array.from(new Set(projects.map((p) => p.propertyType)))
+  const propertyTypes = Array.from(new Set(projects
+    .map((p) => p.property_type)
+    .filter((type): type is string => typeof type === 'string' && type.length > 0)
+  ))
 
  
   const statuses = Array.from(new Set(projects.map((p) => p.status)))
@@ -139,10 +142,9 @@ export default function ProjectsPage() {
           <section className="py-8">
             <div className="container">
               <h1 className="text-3xl font-bold mb-6">Our Properties</h1>
-              <p className="text-muted-foreground mb-8 max-w-3xl">
+              <div className="text-muted-foreground mb-8 max-w-3xl">
                 {isError && <p className="text-red-600">Error: {isError.message}</p>}
-                
-              </p>
+              </div>
             </div>
           </section>
         </main>

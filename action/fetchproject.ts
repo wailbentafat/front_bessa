@@ -1,6 +1,6 @@
 // hooks/useProjects.ts
 import { useQuery } from "@tanstack/react-query";
-import { ProjectTypeSchema } from "../validators/ProjecttypeSchema"; // Import your ProjectTypeSchema ; // Adjust the path as needed
+import { ApiProjectTypeSchema } from "../validators/ProjecttypeSchema"; // Changed from ProjectTypeSchema to ApiProjectTypeSchema
 import { z } from "zod";
 
 export function useProjects() {
@@ -24,7 +24,7 @@ export function useProjects() {
 
       try {
         console.log("Validating fetched data...");
-        const validatedData = z.array(ProjectTypeSchema).parse(data);
+        const validatedData = z.array(ApiProjectTypeSchema).parse(data);
         console.log("Data validation successful:", validatedData);
         return validatedData;
       } catch (error) {
